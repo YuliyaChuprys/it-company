@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 
 public class Team {
 
-    public static int amountOfPeople = 5; //количество человек в команде
+    public static int amountOfPeople = 5;
 
-    private int capacityPerMonth; //ёмкость команды в месяц
+    private int capacityPerMonth;
     private Developer[] developers;
     private QA[] qas;
     private ProjectManager projectManager;
