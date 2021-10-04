@@ -1,6 +1,7 @@
 package main.java.by.chuprys.itcompany;
 
 import main.java.by.chuprys.itcompany.domain.Customer;
+import main.java.by.chuprys.itcompany.domain.DegreeOfEmployee;
 import main.java.by.chuprys.itcompany.domain.Developer;
 import main.java.by.chuprys.itcompany.domain.Project;
 import main.java.by.chuprys.itcompany.domain.ProjectManager;
@@ -20,13 +21,16 @@ public class ITCompany {
 
         Team team = initializeData();
         Customer customer = new Customer("Grape", "+375291112233", "BigBoss",
-                "email@mail.ru", "1111 2222 3333 4444");
+                "email@mail.ru");
         Requirement requirement = new Requirement(8, "Создание нового проекта",
                 LocalDate.parse("2022-10-01"));
         Project project = new Project("NewProject", requirement, customer);
 
-        ProjectEstimationService projectEstimationService = new ProjectEstimationService();
+        ProjectEstimationService projectEstimationService = new ProjectEstimationService(); //объявление объекта
         ProjectOffer projectOffer = projectEstimationService.estimateProject(project, team, 2F);
+        //проджектЕст Сёрвис.вызов методаЕстимэйт проджект
+       //DegreeOfEmployee degreeOfEmployee = new DegreeOfEmployee(); //объект "уровень работника"
+       // DegreeOfEmployee degreeOfEmployee1 = degreeOfEmployee.getlevelEmployee();
 
         System.out.println("Стоимость проекта($) =" + projectOffer.getPrice() + ", Время выполнения(месяцев) =" +
                 projectOffer.getExecutionTime() + ", " + projectOffer.getTeam().getTeamInfo());
@@ -39,26 +43,27 @@ public class ITCompany {
         Developer[] developers = new Developer[3];
         QA[] qas = new QA[2];
 
-        Developer firstDev = new Developer("Ivan", "Ivanov", "junior", "java",
+        Developer firstDev = new Developer("Ivan", "Ivanov", "java",
                 new BigDecimal(700));
-        Developer secondDev = new Developer("Bob", "Jonson", "midl", "java",
+        Developer secondDev = new Developer("Bob", "Jonson", "java",
                 new BigDecimal(1000));
 
-        Developer fourthDev = new Developer("Ivan", "Ivanov", "senior", "java",
+
+        Developer fourthDev = new Developer("Ivan", "Ivanov", "java",
                 new BigDecimal(2000));
 
         developers[0] = firstDev;
         developers[1] = secondDev;
         developers[2] = fourthDev;
 
-        QA firstQa = new QA("Ivan", "Ivanov", "junior", new BigDecimal(700));
-        QA secondQa = new QA("Bob", "Jonson", "midl", new BigDecimal(1000));
+        QA firstQa = new QA("Ivan", "Ivanov", new BigDecimal(700));
+        QA secondQa = new QA("Bob", "Jonson", new BigDecimal(1000));
 
 
         qas[0] = firstQa;
         qas[1] = secondQa;
 
-        ProjectManager firstManager = new ProjectManager("Piter", "Second", "midl",
+        ProjectManager firstManager = new ProjectManager("Piter", "Second",
                 new BigDecimal(3000));
 
         LocalDateTime projectEnd = LocalDateTime.of(2021, 12, 15, 18, 00);

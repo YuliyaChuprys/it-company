@@ -12,12 +12,16 @@ public class Developer {
     private BigDecimal salaryPerMonth;
     private LocalDateTime dateOfBirthday;
 
-    public Developer(String firstName, String secondName, String level, String language, BigDecimal salaryPerMonth) {
+    public Developer(String firstName, String secondName, String language, BigDecimal salaryPerMonth) {
         this.firstName = firstName;
         this.secondName = secondName;
-        this.level = level;
         this.language = language;
         this.salaryPerMonth = salaryPerMonth;
+    }
+
+    public Developer(String firstName, String secondName) {
+        this.firstName = firstName;
+        this.secondName = secondName;
     }
 
     public String getFirstName() {
@@ -34,14 +38,6 @@ public class Developer {
 
     public void setSecondName(String secondName) {
         this.secondName = secondName;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
     }
 
     public String getLanguage() {

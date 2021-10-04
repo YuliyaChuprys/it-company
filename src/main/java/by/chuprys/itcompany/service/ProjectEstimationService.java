@@ -22,9 +22,7 @@ public class ProjectEstimationService {
         BigDecimal teamSalaryPerMonth = calculateTeamSalaryPerMonth(team);
         BigDecimal price = teamSalaryPerMonth.multiply(BigDecimal.valueOf(numberOfMonth))
                 .multiply(BigDecimal.valueOf(margin));
-        return new ProjectOffer(price, numberOfMonth, project, team);
-
-
+        return new ProjectOffer(price, numberOfMonth, project, team); //создали объект
     }
 
     public ProjectOffer estimateProject(Project project, Team team) {
@@ -40,14 +38,13 @@ public class ProjectEstimationService {
 
         for (int i = 0; i < developers.length; i++) {
             teamSalaries = teamSalaries.add(developers[i].getSalaryPerMonth());
-
         }
+
         for (int i = 0; i < qas.length; i++) {
             teamSalaries = teamSalaries.add(qas[i].getSalaryPerMonth());
         }
 
         teamSalaries = teamSalaries.add(team.getProjectManager().getSalaryPerMonth());
-
         return teamSalaries;
 
     }

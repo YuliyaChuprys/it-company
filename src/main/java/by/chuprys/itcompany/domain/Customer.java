@@ -8,12 +8,11 @@ public class Customer {
     private String companyEmail;
     private String account;
 
-    public Customer(String companyName, String phone, String contactName, String companyEmail, String account) {
+    public Customer(String companyName, String phone, String contactName, String companyEmail) {
         this.companyName = companyName;
         this.phone = phone;
         this.contactName = contactName;
         this.companyEmail = companyEmail;
-        this.account = account;
     }
 
     public String getCompanyName() {
@@ -48,11 +47,4 @@ public class Customer {
         this.companyEmail = companyEmail;
     }
 
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
 }

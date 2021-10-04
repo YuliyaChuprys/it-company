@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 public class Team {
 
     public static int amountOfPeople = 5;
-
     private int capacityPerMonth;
     private Developer[] developers;
     private QA[] qas;
@@ -19,7 +18,6 @@ public class Team {
         this.developers = developers;
         this.qas = qas;
         this.projectManager = projectManager;
-        this.projectEnd = projectEnd;
 
     }
 
@@ -55,15 +53,7 @@ public class Team {
         this.projectManager = projectManager;
     }
 
-    public LocalDateTime getProjectEnd() {
-        return projectEnd;
-    }
-
-    public void setProjectEnd(LocalDateTime projectEnd) {
-        this.projectEnd = projectEnd;
-    }
-
-    public String getTeamInfo(){
+    public String getTeamInfo() {
         return "Количество разработчиков " + developers.length +
                 ", Количество тестировщиков " + qas.length +
                 ", Проект менеджер:" + projectManager.getFirstName() +
