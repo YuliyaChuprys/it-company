@@ -1,35 +1,27 @@
 package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
-public class ProjectManager {
+public class ProjectManager extends Employees {
 
-    private String firstName;
-    private String secondName;
     // private String level;
     private BigDecimal salaryPerMonth;
 
-    public ProjectManager(String firstName, String secondName, BigDecimal salaryPerMonth) {
+    public ProjectManager(LocalDate dateOfBirthday, boolean isWork, String id, BigDecimal salaryPerMonth) {
 
-        this.firstName = firstName;
-        this.secondName = secondName;
+        super(dateOfBirthday, isWork, id);
         this.salaryPerMonth = salaryPerMonth;
     }
 
-    public String getFirstName() {
-        return firstName;
+    @Override
+    public void welcomMassage(){
+        System.out.println(toString()+ "Поздравдяем с повышением, теперь ты менеджер!");
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    @Override
+    public void departmentName(){
+        System.out.println("Отдел Менеджеров: ");
     }
 
     public BigDecimal getSalaryPerMonth() {

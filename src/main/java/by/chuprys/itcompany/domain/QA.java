@@ -1,35 +1,33 @@
 package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
-public class QA {
+public class QA extends Employees {
 
-    private String firstName;
-    private String secondName;
     //private String level;
     private BigDecimal salaryPerMonth;
 
-    public QA(String firstName, String secondName, BigDecimal salaryPerMonth){
+    public QA(LocalDate dateOfBirthday, boolean isWork, String id,  BigDecimal salaryPerMonth){
 
-        this.firstName = firstName;
-        this.secondName = secondName;
+        super(dateOfBirthday, isWork, id);
+        //this.firstName = firstName;
+        //this.secondName = secondName;
         this.salaryPerMonth = salaryPerMonth;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public boolean equals(QA qas){
+
+        return this.getId() == qas.getId();
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    @Override
+    public void welcomMassage(){
+        System.out.println(toString() + "Добро пожаловать в отдел тестирования");
     }
 
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void departmentName(){
+        System.out.println("Отдел тестировщиков: ");
     }
 
     public BigDecimal getSalaryPerMonth() {

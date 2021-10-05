@@ -17,6 +17,10 @@ public class ProjectOffer {
         this.team = team;
     }
 
+    // public String toString(){
+    //    return "Стоимость проекта: " + getPrice() + ", Время выполнения(мес): " + getExecutionTime();
+    //}
+
 
     public BigDecimal getPrice() {
         return price;

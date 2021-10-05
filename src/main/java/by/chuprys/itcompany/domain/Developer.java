@@ -1,43 +1,39 @@
 package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Developer {
+public class Developer extends Employees {
 
-    private String firstName;
-    private String secondName;
-    private String level;
+    //private String level;
     private String language;
     private BigDecimal salaryPerMonth;
-    private LocalDateTime dateOfBirthday;
 
-    public Developer(String firstName, String secondName, String language, BigDecimal salaryPerMonth) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.language = language;
+    public Developer (LocalDate dateOfBirthday, boolean isWork, String id, BigDecimal salaryPerMonth) {
+        super(dateOfBirthday, isWork, id);
         this.salaryPerMonth = salaryPerMonth;
     }
 
-    public Developer(String firstName, String secondName) {
-        this.firstName = firstName;
-        this.secondName = secondName;
+    //Employees stajor = new Developer(LocalDate.parse("2003-06-06"), false, null, null);
+
+    public static void traineeship( Employees employees){
+        employees.traineeship();
     }
 
-    public String getFirstName() {
-        return firstName;
+    @Override
+    public void welcomMassage() {
+        System.out.println("Добро пожаловать в отдел разработки!");
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    @Override
+    public void departmentName(){
+        System.out.println("Отдел разработчиков: ");
     }
 
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    @Override
+    public String toString(){
+        return "Имя: " + getFirstName() + ", Фамилия: " + getSecondName();
     }
 
     public String getLanguage() {
@@ -56,11 +52,4 @@ public class Developer {
         this.salaryPerMonth = salaryPerMonth;
     }
 
-    public LocalDateTime getDateOfBirthday() {
-        return dateOfBirthday;
-    }
-
-    public void setDateOfBirthday(LocalDateTime dateOfBirthday) {
-        this.dateOfBirthday = dateOfBirthday;
-    }
 }

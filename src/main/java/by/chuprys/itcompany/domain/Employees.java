@@ -1,14 +1,34 @@
 package main.java.by.chuprys.itcompany.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-public class Employees {
+public abstract class Employees {
 
     private String firstName;
     private String secondName;
+    private LocalDate dateOfBirthday;
     private String placeOfBirth;
     private boolean isWork;
-    private LocalDateTime dateOfBirthday;
+    private String id; //ID card
+
+    public Employees(LocalDate dateOfBirthday, boolean isWork, String id){
+        this.dateOfBirthday = dateOfBirthday;
+        this.isWork = isWork;
+        this.id = id;
+    }
+
+    public abstract void welcomMassage();
+
+    public abstract void departmentName();
+
+    public void traineeship(){
+        System.out.println("Добро пожаловать на стажировку! ");
+    }
+
+    @Override
+    public String toString(){
+        return "Дата рождения" + dateOfBirthday;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -42,12 +62,12 @@ public class Employees {
         this.isWork = isWork;
     }
 
-    public LocalDateTime getDateOfBirthday(){
-        return dateOfBirthday;
+    public String getId() {
+        return id;
     }
 
-    public void setDateOfBirthday(LocalDateTime dateOfBirthday){
-        this.dateOfBirthday = dateOfBirthday;
+    public void setId(String id) {
+        this.id = id;
     }
 }
 
