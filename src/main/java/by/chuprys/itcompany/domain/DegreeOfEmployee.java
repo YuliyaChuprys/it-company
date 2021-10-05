@@ -1,7 +1,6 @@
 package main.java.by.chuprys.itcompany.domain;
 
 public class DegreeOfEmployee {
-
     private int workExperienceMonth;
     String level = getlevelEmployee(); //"junior"(<12), "middle"12<24, "senior">36
 
