@@ -18,43 +18,40 @@ import java.time.LocalDateTime;
 public class ITCompany {
 
     public static void main(String[] args) {
-
         Customer customer = new Customer("Grape", "+375291112233", "BigBoss",
                 "email@mail.ru");
         Requirement requirement = new Requirement(8, "Создание нового проекта",
                 LocalDate.parse("2022-10-01"));
         Project project = new Project("NewProject", requirement, customer);
-
         Developer fifthDev = new Developer(LocalDate.parse("2000-05-05"), true, "d04",
                 new BigDecimal(500));
         fifthDev.welcomMassage();
+        fifthDev.departmentName();
         fifthDev.setFirstName("Рафаэль");
+
         System.out.println(fifthDev.toString());
 
         QA thirdQa = new QA(LocalDate.parse("1990-02-01"), true, "t03", new BigDecimal(300));
         QA fourthQa = new QA(LocalDate.parse("1990-02-01"), true, "t03", new BigDecimal(300));
-        thirdQa.setFirstName("Клод");
+        thirdQa.setFirstName("Деонис");
+        fourthQa.setFirstName("Давид");
 
         Team team = initializeData();
-
         ProjectEstimationService projectEstimationService = new ProjectEstimationService(); //объявление объекта
         ProjectOffer projectOffer = projectEstimationService.estimateProject(project, team, 2F);
-        //проджектЕст Сёрвис.вызов методаЕстимэйт проджект
-       //DegreeOfEmployee degreeOfEmployee = new DegreeOfEmployee(); //объект "уровень работника"
-       // DegreeOfEmployee degreeOfEmployee1 = degreeOfEmployee.getlevelEmployee();
-
-
+                                     //DegreeOfEmployee degreeOfEmployee = new DegreeOfEmployee(); //объект "уровень работника"
+                                     // DegreeOfEmployee degreeOfEmployee1 = degreeOfEmployee.getlevelEmployee();
         System.out.println("Стоимость проекта($) =" + projectOffer.getPrice() + ", Время выполнения(месяцев) =" +
                 projectOffer.getExecutionTime() + ", " + projectOffer.getTeam().getTeamInfo());
-
+        thirdQa.departmentName();
+        System.out.println(thirdQa.toString());
+        System.out.println(fourthQa.toString());
         System.out.println("Тестировщик 3 и тестировщик 4 - это один и тот же работник? " + thirdQa.equals(fourthQa));//equals
     }
 
     public static Team initializeData() {
-
         Developer[] developers = new Developer[3];
         QA[] qas = new QA[2];
-
         Developer firstDev = new Developer(LocalDate.parse("1994-12-31"), true, "d01",
                 new BigDecimal(700));
         firstDev.setFirstName("Леонардо");
@@ -81,7 +78,6 @@ public class ITCompany {
 
         ProjectManager firstManager = new ProjectManager(LocalDate.parse("1980-03-03"), true, "m01",
                 new BigDecimal(3000));
-
         firstManager.setFirstName("Пётр");
         firstManager.setSecondName("Мамонов");
 
