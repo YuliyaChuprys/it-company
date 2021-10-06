@@ -20,7 +20,30 @@ public class Employee {
 
     public void sendWelcomMassage(){
         System.out.println("Welcome to Best Company!");
-    };
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; //проверяем равен ли он сам себе
+        if (o == null || getClass() != o.getClass()) return false; //проверка Not null и принадлежит ли одному классу
+
+        Employee that = (Employee) o;
+
+        if (getFirstName() != that.getFirstName()) return false;
+        return getFirstName().equals(that.getFirstName());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId() == null ? 0 : hashCode();
+        result = 31 * result;
+        return result;
+    }
+
+    @Override
+    public String toString(){
+        return "Employee Name: " + getFirstName();
+    }
 
     public String getId() {
         return id;

@@ -2,6 +2,7 @@ package main.java.by.chuprys.itcompany;
 
 import main.java.by.chuprys.itcompany.domain.Customer;
 import main.java.by.chuprys.itcompany.domain.Developer;
+import main.java.by.chuprys.itcompany.domain.Employee;
 import main.java.by.chuprys.itcompany.domain.Project;
 import main.java.by.chuprys.itcompany.domain.ProjectManager;
 import main.java.by.chuprys.itcompany.domain.ProjectOffer;
@@ -41,6 +42,12 @@ public class ITCompany {
         System.out.println(thirdQa.toString());
         System.out.println(fourthQa.toString());
         System.out.println("Tester 3 и tester 4 has the same idCard? " + thirdQa.equals(fourthQa));//equals
+
+        Employee firstEmplyee = new Employee("E01", "First", false);
+        Employee secondEmplyee = new Employee("E02", "First", true);
+
+        System.out.println(firstEmplyee.toString() + ", " + secondEmplyee.toString());
+        System.out.println("Employee First and Employee Second has the same name? " + firstEmplyee.equals(secondEmplyee));//equals
 
     }
 
