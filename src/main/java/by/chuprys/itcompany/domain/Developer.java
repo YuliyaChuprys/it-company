@@ -1,39 +1,25 @@
 package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-public class Developer extends Employees {
+public class Developer extends Employee {
 
     //private String level;
     private String language;
     private BigDecimal salaryPerMonth;
 
-    public Developer (LocalDate dateOfBirthday, boolean isWork, String id, BigDecimal salaryPerMonth) {
-        super(dateOfBirthday, isWork, id);
+    public Developer (String id, String firstName, boolean isWork, BigDecimal salaryPerMonth) {
+        super(id,  firstName, isWork);
         this.salaryPerMonth = salaryPerMonth;
     }
 
-    //Employees stajor = new Developer(LocalDate.parse("2003-06-06"), false, null, null);
-
-    public static void traineeship( Employees employees){
-        employees.traineeship();
-    }
-
-    @Override
-    public void welcomMassage() {
-        System.out.println("Добро пожаловать в отдел разработки!");
-    }
-
-    @Override
-    public void departmentName(){
-        System.out.println("Отдел разработчиков: ");
+   public void devWelcomMassage() {
+        System.out.println("Welcome to Developer department!");
     }
 
     @Override
     public String toString(){
-        return "Имя: " + getFirstName() + ", Фамилия: " + getSecondName();
+        return "Name: " + getFirstName();
     }
 
     public String getLanguage() {

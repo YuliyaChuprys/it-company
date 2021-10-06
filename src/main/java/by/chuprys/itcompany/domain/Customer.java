@@ -47,4 +47,11 @@ public class Customer {
         this.companyEmail = companyEmail;
     }
 
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
 }

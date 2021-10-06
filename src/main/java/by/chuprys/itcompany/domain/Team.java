@@ -4,15 +4,13 @@ import java.time.LocalDateTime;
 
 public class Team {
 
-    public static int amountOfPeople = 5;
     private int capacityPerMonth;
     private Developer[] developers;
     private QA[] qas;
     private ProjectManager projectManager;
     private LocalDateTime projectEnd;
 
-    public Team(int capacityPerMonth, Developer[] developers, QA[] qas,
-                ProjectManager projectManager, LocalDateTime projectEnd) {
+    public Team(int capacityPerMonth, Developer[] developers, QA[] qas, ProjectManager projectManager) {
 
         this.capacityPerMonth = capacityPerMonth;
         this.developers = developers;
@@ -54,9 +52,9 @@ public class Team {
     }
 
     public String getTeamInfo() {
-        return "Количество разработчиков " + developers.length +
-                ", Количество тестировщиков " + qas.length +
-                ", Проект менеджер:" + projectManager.getFirstName() +
+        return "Developers " + developers.length +
+                ", Testers " + qas.length +
+                ", Project Manager:" + projectManager.getFirstName() +
                 " " + projectManager.getSecondName();
     }
 }

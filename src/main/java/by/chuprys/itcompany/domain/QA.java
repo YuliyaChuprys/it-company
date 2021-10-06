@@ -3,33 +3,49 @@ package main.java.by.chuprys.itcompany.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class QA extends Employees {
+public class QA extends Employee {
     //private String level;
+
     private BigDecimal salaryPerMonth;
 
-    public QA(LocalDate dateOfBirthday, boolean isWork, String id,  BigDecimal salaryPerMonth){
-        super(dateOfBirthday, isWork, id);
-        //this.firstName = firstName;
-        //this.secondName = secondName;
+    public QA(String id, String firstName, boolean isWork, BigDecimal salaryPerMonth) {
+        super(id,  firstName, isWork);
         this.salaryPerMonth = salaryPerMonth;
     }
 
-    public boolean equals(QA qas){
-        return this.getId() == qas.getId();
+    //public boolean equals(QA qas){
+    //    return this.getId() == qas.getId();
+    //}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; //проверяем равен ли он сам себе
+        if (o == null || getClass() != o.getClass()) return false; //проверка Not null и принадлежит ли одному классу
+
+        QA that = (QA) o;
+
+        if (getId() != that.getId()) return false;
+        return getId().equals(that.getId());
     }
 
     @Override
-    public void welcomMassage(){
-        System.out.println(toString() + "Добро пожаловать в отдел тестирования");
+    public int hashCode() {
+        int result = getFirstName() == null ? 0 : getFirstName().hashCode();
+        result = 31 * result;
+        return result;
+    }
+
+   public void sendWelcomeMassage(){
+        System.out.println(toString() + "Welcome to Testing department");
     }
 
     @Override
     public String toString(){
-        return "Имя: " + getFirstName() + ", Идентификационный номер: " + this.getId();
+        return "Имя: " + getFirstName() + ", Identical ID: " + this.getId();
     }
 
-    public void departmentName(){
-        System.out.println("Отдел тестировщиков: ");
+    public void getDepartmentName(){
+        System.out.println("Testing department: ");
     }
 
     public BigDecimal getSalaryPerMonth() {
@@ -39,4 +55,5 @@ public class QA extends Employees {
     public void setSalaryPerMonth(BigDecimal salaryPerMonth) {
         this.salaryPerMonth = salaryPerMonth;
     }
+
 }
