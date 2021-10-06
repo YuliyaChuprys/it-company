@@ -40,7 +40,7 @@ public class ITCompany {
         thirdQa.getDepartmentName();
         System.out.println(thirdQa.toString());
         System.out.println(fourthQa.toString());
-        System.out.println("Tester 3 и tester 4 - the same woker? " + thirdQa.equals(fourthQa));//equals
+        System.out.println("Tester 3 и tester 4 has the same idCard? " + thirdQa.equals(fourthQa));//equals
 
     }
 
