@@ -17,6 +17,24 @@ public class Clining extends Woker {
         return "Clining: " + getFirstName();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Clining clining = (Clining) o;
+
+        return companyAddress.equals(clining.companyAddress);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + companyAddress.hashCode();
+        return result;
+    }
+
     public String getCompanyName() {
         return companyName;
     }

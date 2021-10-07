@@ -1,7 +1,9 @@
 package main.java.by.chuprys.itcompany;
 
 import main.java.by.chuprys.itcompany.domain.Customer;
+import main.java.by.chuprys.itcompany.service.EmployeeService;
 import main.java.by.chuprys.itcompany.domain.Developer;
+import main.java.by.chuprys.itcompany.domain.Document;
 import main.java.by.chuprys.itcompany.domain.Employee;
 import main.java.by.chuprys.itcompany.domain.Project;
 import main.java.by.chuprys.itcompany.domain.ProjectManager;
@@ -13,16 +15,16 @@ import main.java.by.chuprys.itcompany.service.ProjectEstimationService;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class ITCompany {
 
     public static void main(String[] args) {
         Customer customer = new Customer("Grape", "+375291112233", "BigBoss",
                 "email@mail.ru");
-        Requirement requirement = new Requirement(8, "Create new cool project",
+        Requirement requirement = new Requirement(20221001,"Create new cool project", 8,
                 LocalDate.parse("2022-10-01"));
         Project project = new Project("NewProject", requirement, customer);
+        Document document = new Document(111, "Document for Project");
         Developer fifthDev = new Developer( "dev05", "Leonard", true, new BigDecimal(500));
         fifthDev.sendWelcomMassage();
         fifthDev.devWelcomMassage();
@@ -34,7 +36,7 @@ public class ITCompany {
 
         Team team = initializeData();
         ProjectEstimationService projectEstimationService = new ProjectEstimationService(); //объявление объекта
-        ProjectOffer projectOffer = projectEstimationService.estimateProject(project, team, 2F);
+        ProjectOffer projectOffer = projectEstimationService.estimateProject(document, project, team, 2F);
 
         System.out.println("Project price($) =" + projectOffer.getPrice() + ", Time to do(month) =" +
                 projectOffer.getExecutionTime() + ", " + projectOffer.getTeam().getTeamInfo());
@@ -45,6 +47,12 @@ public class ITCompany {
 
         Employee firstEmplyee = new Employee("E01", "First", false);
         Employee secondEmplyee = new Employee("E02", "First", true);
+        firstEmplyee.setWorkExperienceMonth(10);
+
+        EmployeeService degreeOfEmployeeService = new EmployeeService();
+        degreeOfEmployeeService.getLevelOfEmployee(fourthQa);
+
+        System.out.println("Degree of employee " + fourthQa.getRaiting());
 
         System.out.println(firstEmplyee.toString() + ", " + secondEmplyee.toString());
         System.out.println("Employee First and Employee Second has the same name? " + firstEmplyee.equals(secondEmplyee));//equals
@@ -62,10 +70,6 @@ public class ITCompany {
         developers[1] = secondDev;
         developers[2] = fourthDev;
 
-        System.out.println(firstDev.toString());
-        System.out.println(secondDev.toString());
-        System.out.println(fourthDev.toString());
-
         QA firstQa = new QA("t01", "Damiano", true, new BigDecimal(1000));
         QA secondQa = new QA("t02", "Stefan", true, new BigDecimal(900));
 
@@ -76,7 +80,7 @@ public class ITCompany {
                 "ProjectManager", new BigDecimal(3000));
         firstManager.setSecondName("Mamonov");
 
-       LocalDateTime projectEnd = LocalDateTime.of(2021, 12, 15, 18, 00);
+        //LocalDateTime projectEnd = LocalDateTime.of(2021, 12, 15, 18, 00);
         return new Team(60, developers, qas, firstManager);
     }
 

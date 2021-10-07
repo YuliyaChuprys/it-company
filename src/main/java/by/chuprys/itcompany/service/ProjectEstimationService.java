@@ -1,6 +1,7 @@
 package main.java.by.chuprys.itcompany.service;
 
 import main.java.by.chuprys.itcompany.domain.Developer;
+import main.java.by.chuprys.itcompany.domain.Document;
 import main.java.by.chuprys.itcompany.domain.Project;
 import main.java.by.chuprys.itcompany.domain.ProjectManager;
 import main.java.by.chuprys.itcompany.domain.ProjectOffer;
@@ -14,7 +15,7 @@ public class ProjectEstimationService {
 
     private static final float MARGIN = 1.5F;
 
-    public ProjectOffer estimateProject(Project project, Team team, float margin) {
+    public ProjectOffer estimateProject(Document document, Project project, Team team, float margin) {
 
         int storyPoints = calculateProjectStoryPoints(project.getRequirement());
         int teamCapacity = team.getCapacityPerMonth();
@@ -22,12 +23,14 @@ public class ProjectEstimationService {
         BigDecimal teamSalaryPerMonth = calculateTeamSalaryPerMonth(team);
         BigDecimal price = teamSalaryPerMonth.multiply(BigDecimal.valueOf(numberOfMonth))
                 .multiply(BigDecimal.valueOf(margin));
-        return new ProjectOffer(price, numberOfMonth, project, team); //создали объект
+        int documentId = document.getDocumentId();
+        String documentTitle = document.getDocumentTitle();
+        return new ProjectOffer(documentId, documentTitle, price, numberOfMonth, project, team);
     }
 
-    public ProjectOffer estimateProject(Project project, Team team) {
+    public ProjectOffer estimateProject(Document document, Project project, Team team) {
 
-        return estimateProject(project, team, MARGIN);
+        return estimateProject(document, project, team, MARGIN);
 
     }
 

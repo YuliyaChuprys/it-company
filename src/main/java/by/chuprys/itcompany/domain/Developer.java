@@ -22,6 +22,24 @@ public class Developer extends Employee {
         return "Name: " + getFirstName();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Developer developer = (Developer) o;
+
+        return language.equals(developer.language);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + language.hashCode();
+        return result;
+    }
+
     public String getLanguage() {
         return language;
     }

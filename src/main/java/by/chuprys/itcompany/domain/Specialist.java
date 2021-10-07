@@ -19,6 +19,24 @@ public abstract class Specialist extends Employee {
         return "Secialist: " + getFirstName();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Specialist that = (Specialist) o;
+
+        return departmentName.equals(that.departmentName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (departmentName != null ? departmentName.hashCode() : 0);
+        return result;
+    }
+
     public String getDepartmentName() {
         return departmentName;
     }

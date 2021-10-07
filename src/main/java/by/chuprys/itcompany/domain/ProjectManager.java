@@ -21,4 +21,5 @@ public class ProjectManager extends Manager {
     public void setSalaryPerMonth(BigDecimal salaryPerMonth) {
         this.salaryPerMonth = salaryPerMonth;
     }
+
 }

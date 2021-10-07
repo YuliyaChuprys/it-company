@@ -4,12 +4,14 @@ import java.time.LocalDate;
 
 public class Employee {
 
-    private String id; //ID card
+    private String id;
     private String firstName;
     private String secondName;
     private boolean isWork;
     private String passportData;
     private LocalDate dateOfBirthday;
+    private int workExperienceMonth;
+    private String raiting;
 
     public Employee(String id, String firstName, boolean isWork){
 
@@ -23,14 +25,28 @@ public class Employee {
     }
 
     @Override
+    public String toString() {
+        return "Employee{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", isWork=" + isWork +
+                ", passportData='" + passportData + '\'' +
+                ", dateOfBirthday=" + dateOfBirthday +
+                ", workExperienceMonth=" + workExperienceMonth +
+                ", raiting='" + raiting + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
-        if (this == o) return true; //проверяем равен ли он сам себе
-        if (o == null || getClass() != o.getClass()) return false; //проверка Not null и принадлежит ли одному классу
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Employee that = (Employee) o;
 
-        if (getFirstName() != that.getFirstName()) return false;
-        return getFirstName().equals(that.getFirstName());
+        if (getId() != that.getId()) return false;
+        return getId().equals(that.getId());
     }
 
     @Override
@@ -40,9 +56,14 @@ public class Employee {
         return result;
     }
 
-    @Override
-    public String toString(){
-        return "Employee Name: " + getFirstName();
+
+
+    public String getRaiting() {
+        return raiting;
+    }
+
+    public void setRaiting(String raiting) {
+        this.raiting = raiting;
     }
 
     public String getId() {
@@ -91,6 +112,14 @@ public class Employee {
 
     public void setDateOfBirthday(LocalDate dateOfBirthday) {
         this.dateOfBirthday = dateOfBirthday;
+    }
+
+    public int getWorkExperienceMonth() {
+        return workExperienceMonth;
+    }
+
+    public void setWorkExperienceMonth(int workExperienceMonth) {
+        this.workExperienceMonth = workExperienceMonth;
     }
 }
 

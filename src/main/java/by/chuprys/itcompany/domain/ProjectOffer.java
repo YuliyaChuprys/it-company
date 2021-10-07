@@ -2,25 +2,21 @@ package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 
-public class ProjectOffer {
+public class ProjectOffer extends Document  {
 
     private BigDecimal price;
     private float executionTime;
     private Project project;
     private Team team;
 
-    public ProjectOffer(BigDecimal price, float executionTime, Project project, Team team){
-
+    public ProjectOffer( int documentId, String documentTitle, BigDecimal price, float executionTime,
+                         Project project, Team team){
+        super(documentId, documentTitle);
         this.price = price;
         this.executionTime = executionTime;
         this.project = project;
         this.team = team;
     }
-
-    // public String toString(){
-    //    return "Стоимость проекта: " + getPrice() + ", Время выполнения(мес): " + getExecutionTime();
-    //}
-
 
     public BigDecimal getPrice() {
         return price;

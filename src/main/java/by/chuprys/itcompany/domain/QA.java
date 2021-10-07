@@ -1,7 +1,6 @@
 package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 public class QA extends Employee {
     //private String level;
@@ -13,14 +12,10 @@ public class QA extends Employee {
         this.salaryPerMonth = salaryPerMonth;
     }
 
-    //public boolean equals(QA qas){
-    //    return this.getId() == qas.getId();
-    //}
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true; //проверяем равен ли он сам себе
-        if (o == null || getClass() != o.getClass()) return false; //проверка Not null и принадлежит ли одному классу
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         QA that = (QA) o;
 
