@@ -36,6 +36,4 @@ public class Project {
         this.customer = customer;
     }
 
-
-
 }

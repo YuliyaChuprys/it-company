@@ -36,7 +36,7 @@ public class QA extends Employee {
 
     @Override
     public String toString(){
-        return "Имя: " + getFirstName() + ", Identical ID: " + this.getId();
+        return "Name: " + getFirstName() + ", Identical ID: " + this.getId();
     }
 
     public void getDepartmentName(){

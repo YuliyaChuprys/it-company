@@ -18,6 +18,40 @@ public class ProjectOffer extends Document  {
         this.team = team;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        ProjectOffer that = (ProjectOffer) o;
+
+        if (Float.compare(that.executionTime, executionTime) != 0) return false;
+        if (!price.equals(that.price)) return false;
+        if (!project.equals(that.project)) return false;
+        return team.equals(that.team);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + price.hashCode();
+        result = 31 * result + (executionTime != +0.0f ? Float.floatToIntBits(executionTime) : 0);
+        result = 31 * result + project.hashCode();
+        result = 31 * result + team.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectOffer{" +
+                "price=" + price +
+                ", executionTime=" + executionTime +
+                ", project=" + project +
+                ", team=" + team +
+                '}';
+    }
+
     public BigDecimal getPrice() {
         return price;
     }

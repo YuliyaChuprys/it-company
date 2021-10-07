@@ -23,6 +23,34 @@ public class Team {
         return capacityPerMonth;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Team team = (Team) o;
+
+        if (capacityPerMonth != team.capacityPerMonth) return false;
+        if (!projectManager.equals(team.projectManager)) return false;
+        return projectEnd.equals(team.projectEnd);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = capacityPerMonth;
+        result = 31 * result + projectManager.hashCode();
+        result = 31 * result + projectEnd.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "projectManager=" + projectManager +
+                ", projectEnd=" + projectEnd +
+                '}';
+    }
+
     public void setCapacityPerMonth(int capacityPerMonth) {
         this.capacityPerMonth = capacityPerMonth;
     }
