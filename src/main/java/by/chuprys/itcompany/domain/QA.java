@@ -3,7 +3,6 @@ package main.java.by.chuprys.itcompany.domain;
 import java.math.BigDecimal;
 
 public class QA extends Employee {
-    //private String level;
 
     private BigDecimal salaryPerMonth;
 
@@ -14,13 +13,20 @@ public class QA extends Employee {
 
     @Override
     public boolean equals(Object o) {
+        if (! super.equals(o)) return false;
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (getClass() != o.getClass()) return false;
 
-        QA that = (QA) o;
+        QA other = (QA) o;
 
-        if (getId() != that.getId()) return false;
-        return getId().equals(that.getId());
+        if (this.getSalaryPerMonth() != null) {
+            return getSalaryPerMonth().equals(other.getSalaryPerMonth());
+        } else {
+            if (other.getSalaryPerMonth() != null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -28,10 +34,6 @@ public class QA extends Employee {
         int result = getFirstName() == null ? 0 : getFirstName().hashCode();
         result = 31 * result;
         return result;
-    }
-
-   public void sendWelcomeMassage(){
-        System.out.println(toString() + "Welcome to Testing department");
     }
 
     @Override

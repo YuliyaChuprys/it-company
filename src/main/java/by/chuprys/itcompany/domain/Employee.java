@@ -13,14 +13,14 @@ public class Employee {
     private int workExperienceMonth;
     private String raiting;
 
-    public Employee(String id, String firstName, boolean isWork){
+    public Employee(String id, String firstName, boolean isWork) {
 
         this.id = id;
         this.firstName = firstName;
         this.isWork = isWork;
     }
 
-    public void sendWelcomMassage(){
+    public void sendWelcomeMessage() {
         System.out.println("Welcome to Best Company!");
     }
 
@@ -43,20 +43,32 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Employee that = (Employee) o;
+        Employee employee = (Employee) o;
 
-        if (getId() != that.getId()) return false;
-        return getId().equals(that.getId());
+        if (isWork != employee.isWork) return false;
+        if (workExperienceMonth != employee.workExperienceMonth) return false;
+        if (id != null ? !id.equals(employee.id) : employee.id != null) return false;
+        if (firstName != null ? !firstName.equals(employee.firstName) : employee.firstName != null) return false;
+        if (secondName != null ? !secondName.equals(employee.secondName) : employee.secondName != null) return false;
+        if (passportData != null ? !passportData.equals(employee.passportData) : employee.passportData != null)
+            return false;
+        if (dateOfBirthday != null ? !dateOfBirthday.equals(employee.dateOfBirthday) : employee.dateOfBirthday != null)
+            return false;
+        return raiting != null ? raiting.equals(employee.raiting) : employee.raiting == null;
     }
 
     @Override
     public int hashCode() {
-        int result = getId() == null ? 0 : hashCode();
-        result = 31 * result;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (secondName != null ? secondName.hashCode() : 0);
+        result = 31 * result + (isWork ? 1 : 0);
+        result = 31 * result + (passportData != null ? passportData.hashCode() : 0);
+        result = 31 * result + (dateOfBirthday != null ? dateOfBirthday.hashCode() : 0);
+        result = 31 * result + workExperienceMonth;
+        result = 31 * result + (raiting != null ? raiting.hashCode() : 0);
         return result;
     }
-
-
 
     public String getRaiting() {
         return raiting;

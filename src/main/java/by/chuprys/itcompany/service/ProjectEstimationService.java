@@ -3,7 +3,6 @@ package main.java.by.chuprys.itcompany.service;
 import main.java.by.chuprys.itcompany.domain.Developer;
 import main.java.by.chuprys.itcompany.domain.Document;
 import main.java.by.chuprys.itcompany.domain.Project;
-import main.java.by.chuprys.itcompany.domain.ProjectManager;
 import main.java.by.chuprys.itcompany.domain.ProjectOffer;
 import main.java.by.chuprys.itcompany.domain.QA;
 import main.java.by.chuprys.itcompany.domain.Requirement;

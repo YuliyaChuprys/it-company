@@ -1,6 +1,6 @@
 package main.java.by.chuprys.itcompany.domain;
 
-public class LeadQa extends Manager{
+public class LeadQa extends Manager {
 
     private boolean manual;
     private boolean isOnProject;
@@ -10,7 +10,7 @@ public class LeadQa extends Manager{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Lead of Testing department: " + getFirstName();
     }
 

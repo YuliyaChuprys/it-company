@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 public class Developer extends Employee {
 
-    //private String level;
     private String language;
     private BigDecimal salaryPerMonth;
 
@@ -13,7 +12,8 @@ public class Developer extends Employee {
         this.salaryPerMonth = salaryPerMonth;
     }
 
-   public void devWelcomMassage() {
+    @Override
+    public void sendWelcomeMessage() {
         System.out.println("Welcome to Developer department!");
     }
 

@@ -26,10 +26,9 @@ public class ITCompany {
         Project project = new Project("NewProject", requirement, customer);
         Document document = new Document(111, "Document for Project");
         Developer fifthDev = new Developer( "dev05", "Leonard", true, new BigDecimal(500));
-        fifthDev.sendWelcomMassage();
-        fifthDev.devWelcomMassage();
+        fifthDev.sendWelcomeMessage();
 
-        System.out.println(fifthDev.toString());
+        System.out.println(fifthDev);
 
         QA thirdQa = new QA("t03", "Vincent", true, new BigDecimal(300));
         QA fourthQa = new QA("t033", "David", true, new BigDecimal(500));
@@ -41,8 +40,8 @@ public class ITCompany {
         System.out.println("Project price($) =" + projectOffer.getPrice() + ", Time to do(month) =" +
                 projectOffer.getExecutionTime() + ", " + projectOffer.getTeam().getTeamInfo());
         thirdQa.getDepartmentName();
-        System.out.println(thirdQa.toString());
-        System.out.println(fourthQa.toString());
+        System.out.println(thirdQa);
+        System.out.println(fourthQa);
         System.out.println("Tester 3 и tester 4 has the same idCard? " + thirdQa.equals(fourthQa));//equals
 
         Employee firstEmplyee = new Employee("E01", "First", false);
@@ -54,7 +53,7 @@ public class ITCompany {
 
         System.out.println("Degree of employee " + fourthQa.getRaiting());
 
-        System.out.println(firstEmplyee.toString() + ", " + secondEmplyee.toString());
+        System.out.println(firstEmplyee + ", " + secondEmplyee);
         System.out.println("Employee First and Employee Second has the same name? " + firstEmplyee.equals(secondEmplyee));//equals
 
     }

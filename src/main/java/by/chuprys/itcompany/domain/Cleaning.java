@@ -1,20 +1,18 @@
 package main.java.by.chuprys.itcompany.domain;
 
-import java.math.BigDecimal;
-
-public class Clining extends Woker {
+public class Cleaning extends Woker {
 
     private String companyName;
     private String companyAddress;
     private int amountWorkDayPerWeek = 3;
 
-    public Clining(String id, String firstName, boolean isWork, boolean uniform){
+    public Cleaning(String id, String firstName, boolean isWork, boolean uniform) {
         super(id, firstName, isWork, uniform);
     }
 
     @Override
-    public String toString(){
-        return "Clining: " + getFirstName();
+    public String toString() {
+        return "Cleaning: " + getFirstName();
     }
 
     @Override
@@ -23,9 +21,9 @@ public class Clining extends Woker {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Clining clining = (Clining) o;
+        Cleaning cleaning = (Cleaning) o;
 
-        return companyAddress.equals(clining.companyAddress);
+        return companyAddress.equals(cleaning.companyAddress);
     }
 
     @Override

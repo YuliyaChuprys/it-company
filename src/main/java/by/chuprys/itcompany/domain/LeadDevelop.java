@@ -1,17 +1,16 @@
 package main.java.by.chuprys.itcompany.domain;
 
-public class LeadDevelop extends Manager{
+public class LeadDevelop extends Manager {
 
     private String language;
     private boolean isOnProject;
 
     public LeadDevelop(String id, String firstName, boolean isWork, String departmentName) {
         super(id, firstName, isWork, departmentName);
-        this.isOnProject = isOnProject;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Lead of Develop department: " + getFirstName();
     }
 

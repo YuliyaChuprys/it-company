@@ -11,12 +11,10 @@ public class Team {
     private LocalDateTime projectEnd;
 
     public Team(int capacityPerMonth, Developer[] developers, QA[] qas, ProjectManager projectManager) {
-
         this.capacityPerMonth = capacityPerMonth;
         this.developers = developers;
         this.qas = qas;
         this.projectManager = projectManager;
-
     }
 
     public int getCapacityPerMonth() {

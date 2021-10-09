@@ -10,9 +10,9 @@ public abstract class Specialist extends Employee {
     }
 
     @Override
-    public void sendWelcomMassage(){
+    public void sendWelcomeMessage(){
         System.out.println("Welcome to Best Company Specialist department!");
-    };
+    }
 
     @Override
     public String toString(){
