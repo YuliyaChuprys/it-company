@@ -14,7 +14,6 @@ public class Employee {
     private String raiting;
 
     public Employee(String id, String firstName, boolean isWork) {
-
         this.id = id;
         this.firstName = firstName;
         this.isWork = isWork;

@@ -10,10 +10,11 @@ import main.java.by.chuprys.itcompany.domain.Team;
 
 import java.math.BigDecimal;
 
-public class ProjectEstimationService {
+public class ProjectEstimationService implements IProjectEstimationService {
 
     private static final float MARGIN = 1.5F;
 
+    @Override
     public ProjectOffer estimateProject(Document document, Project project, Team team, float margin) {
 
         int storyPoints = calculateProjectStoryPoints(project.getRequirement());
@@ -27,6 +28,7 @@ public class ProjectEstimationService {
         return new ProjectOffer(documentId, documentTitle, price, numberOfMonth, project, team);
     }
 
+    @Override
     public ProjectOffer estimateProject(Document document, Project project, Team team) {
 
         return estimateProject(document, project, team, MARGIN);

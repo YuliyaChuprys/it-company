@@ -1,11 +1,12 @@
 package main.java.by.chuprys.itcompany.service;
 
+import main.java.by.chuprys.itcompany.domain.Educable;
 import main.java.by.chuprys.itcompany.domain.Employee;
 
-public class EmployeeService {
+public class EmployeeService implements IEmployeeService {
 
+    @Override
     public void getLevelOfEmployee(Employee employee) {
-
         int workExperienceMonth = employee.getWorkExperienceMonth();
         String level = null;
         if (workExperienceMonth < 0) {
@@ -19,4 +20,17 @@ public class EmployeeService {
         }
         employee.setRaiting(level);
     }
+
+    @Override
+    public void sendToCourse(Educable educable){
+        String level = educable.getLevel();
+        IEducationService educationService = new EducationService();
+        if(level.equals("junior")){
+            educationService.upLevelToMiddle(educable);
+        } else if(level.equals("middle")){
+            educationService.upLevelToSenior(educable);
+        }
+
+    }
+
 }

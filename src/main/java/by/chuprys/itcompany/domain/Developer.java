@@ -2,13 +2,13 @@ package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 
-public class Developer extends Employee {
+public class Developer extends Specialist {
 
     private String language;
     private BigDecimal salaryPerMonth;
 
     public Developer (String id, String firstName, boolean isWork, BigDecimal salaryPerMonth) {
-        super(id,  firstName, isWork);
+        super(id,  firstName, isWork, "Developer department");
         this.salaryPerMonth = salaryPerMonth;
     }
 

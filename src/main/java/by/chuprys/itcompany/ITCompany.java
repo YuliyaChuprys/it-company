@@ -11,6 +11,8 @@ import main.java.by.chuprys.itcompany.domain.ProjectOffer;
 import main.java.by.chuprys.itcompany.domain.QA;
 import main.java.by.chuprys.itcompany.domain.Requirement;
 import main.java.by.chuprys.itcompany.domain.Team;
+import main.java.by.chuprys.itcompany.service.IEmployeeService;
+import main.java.by.chuprys.itcompany.service.IProjectEstimationService;
 import main.java.by.chuprys.itcompany.service.ProjectEstimationService;
 
 import java.math.BigDecimal;
@@ -34,7 +36,7 @@ public class ITCompany {
         QA fourthQa = new QA("t033", "David", true, new BigDecimal(500));
 
         Team team = initializeData();
-        ProjectEstimationService projectEstimationService = new ProjectEstimationService(); //объявление объекта
+        IProjectEstimationService projectEstimationService = new ProjectEstimationService(); //объявление объекта
         ProjectOffer projectOffer = projectEstimationService.estimateProject(document, project, team, 2F);
 
         System.out.println("Project price($) =" + projectOffer.getPrice() + ", Time to do(month) =" +
@@ -48,13 +50,19 @@ public class ITCompany {
         Employee secondEmplyee = new Employee("E02", "First", true);
         firstEmplyee.setWorkExperienceMonth(10);
 
-        EmployeeService degreeOfEmployeeService = new EmployeeService();
-        degreeOfEmployeeService.getLevelOfEmployee(fourthQa);
+        IEmployeeService employeeService = new EmployeeService();
+        employeeService.getLevelOfEmployee(fourthQa);
 
         System.out.println("Degree of employee " + fourthQa.getRaiting());
 
+        employeeService.sendToCourse(fourthQa);
+
+        System.out.println("Degree of employee after courses " + fourthQa.getRaiting());
+
         System.out.println(firstEmplyee + ", " + secondEmplyee);
         System.out.println("Employee First and Employee Second has the same name? " + firstEmplyee.equals(secondEmplyee));//equals
+
+
 
     }
 
@@ -79,7 +87,6 @@ public class ITCompany {
                 "ProjectManager", new BigDecimal(3000));
         firstManager.setSecondName("Mamonov");
 
-        //LocalDateTime projectEnd = LocalDateTime.of(2021, 12, 15, 18, 00);
         return new Team(60, developers, qas, firstManager);
     }
 
