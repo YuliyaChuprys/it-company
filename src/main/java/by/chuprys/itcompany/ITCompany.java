@@ -2,6 +2,7 @@ package main.java.by.chuprys.itcompany;
 
 import main.java.by.chuprys.itcompany.domain.Customer;
 import main.java.by.chuprys.itcompany.domain.IDocumentAction;
+import main.java.by.chuprys.itcompany.service.EducationService;
 import main.java.by.chuprys.itcompany.service.EmployeeService;
 import main.java.by.chuprys.itcompany.domain.Developer;
 import main.java.by.chuprys.itcompany.domain.Document;
@@ -12,6 +13,7 @@ import main.java.by.chuprys.itcompany.domain.ProjectOffer;
 import main.java.by.chuprys.itcompany.domain.QA;
 import main.java.by.chuprys.itcompany.domain.Requirement;
 import main.java.by.chuprys.itcompany.domain.Team;
+import main.java.by.chuprys.itcompany.service.IEducationService;
 import main.java.by.chuprys.itcompany.service.IEmployeeService;
 import main.java.by.chuprys.itcompany.service.IProjectEstimationService;
 import main.java.by.chuprys.itcompany.service.ProjectEstimationService;
@@ -53,7 +55,8 @@ public class ITCompany {
         Employee secondEmployee = new Employee("E02", "First", true);
         firstEmployee.setWorkExperienceMonth(10);
 
-        IEmployeeService employeeService = new EmployeeService();
+        IEducationService educationService = new EducationService();
+        IEmployeeService employeeService = new EmployeeService(educationService);
         employeeService.getLevelOfEmployee(fourthQa);
 
         System.out.println("Degree of employee " + fourthQa.getFirstName() + " " + fourthQa.getRating());
