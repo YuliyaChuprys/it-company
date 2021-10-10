@@ -13,24 +13,23 @@ public class EmployeeService implements IEmployeeService {
             System.out.println("Work experience is set incorrect:" + workExperienceMonth);
         } else if (workExperienceMonth < 12) {
             level = "junior";
-        } else if (workExperienceMonth > 24 & workExperienceMonth < 36) {
+        } else if (workExperienceMonth > 12 & workExperienceMonth < 24) {
             level = "middle";
         } else {
             level = "senior";
         }
-        employee.setRaiting(level);
+        employee.setRating(level);
     }
 
     @Override
-    public void sendToCourse(Educable educable){
+    public void sendToCourse(Educable educable) {
         String level = educable.getLevel();
         IEducationService educationService = new EducationService();
-        if(level.equals("junior")){
+        if (level.equals("junior")) {
             educationService.upLevelToMiddle(educable);
-        } else if(level.equals("middle")){
+        } else if (level.equals("middle")) {
             educationService.upLevelToSenior(educable);
         }
-
     }
 
 }

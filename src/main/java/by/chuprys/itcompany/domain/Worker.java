@@ -2,19 +2,20 @@ package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 
-public class Woker extends Employee {
+public class Worker extends Employee {
 
     private BigDecimal salary;
     private boolean uniform;
 
-    public Woker(String id, String firstName, boolean isWork, boolean uniform){
+    public Worker(String id, String firstName, boolean isWork, boolean uniform) {
         super(id, firstName, isWork);
+
         this.uniform = uniform;
     }
 
     @Override
-    public String toString(){
-        return "Woker: " + getFirstName();
+    public String toString() {
+        return "Worker: " + getFirstName();
     }
 
     @Override
@@ -23,9 +24,9 @@ public class Woker extends Employee {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Woker woker = (Woker) o;
+        Worker worker = (Worker) o;
 
-        return uniform == woker.uniform;
+        return uniform == worker.uniform;
     }
 
     @Override

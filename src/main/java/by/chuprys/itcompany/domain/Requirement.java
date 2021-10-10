@@ -15,7 +15,7 @@ public class Requirement extends Document {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Document: " + getDocumentTitle();
     }
 
@@ -39,19 +39,19 @@ public class Requirement extends Document {
         return result;
     }
 
-    public void setFeatures(int features){
+    public void setFeatures(int features) {
         this.features = features;
     }
 
-    public int getFeatures(){
+    public int getFeatures() {
         return features;
     }
 
-    public void setStartProjectDate(LocalDate startProjectDate){
+    public void setStartProjectDate(LocalDate startProjectDate) {
         this.startProjectDate = startProjectDate;
     }
 
-    public LocalDate getStartProjectDate(){
+    public LocalDate getStartProjectDate() {
         return startProjectDate;
     }
 

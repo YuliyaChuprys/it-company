@@ -3,7 +3,7 @@ package main.java.by.chuprys.itcompany.domain;
 import java.math.BigDecimal;
 
 public class ProjectManager extends Manager {
-    // private String level;
+
     private BigDecimal salaryPerMonth;
 
     public ProjectManager(String id, String firstName, boolean isWork, String departmentName,

@@ -1,6 +1,7 @@
 package main.java.by.chuprys.itcompany;
 
 import main.java.by.chuprys.itcompany.domain.Customer;
+import main.java.by.chuprys.itcompany.domain.IDocumentAction;
 import main.java.by.chuprys.itcompany.service.EmployeeService;
 import main.java.by.chuprys.itcompany.domain.Developer;
 import main.java.by.chuprys.itcompany.domain.Document;
@@ -23,46 +24,46 @@ public class ITCompany {
     public static void main(String[] args) {
         Customer customer = new Customer("Grape", "+375291112233", "BigBoss",
                 "email@mail.ru");
-        Requirement requirement = new Requirement(20221001,"Create new cool project", 8,
+        Requirement requirement = new Requirement(20221001, "Create new cool project", 8,
                 LocalDate.parse("2022-10-01"));
         Project project = new Project("NewProject", requirement, customer);
-        Document document = new Document(111, "Document for Project");
-        Developer fifthDev = new Developer( "dev05", "Leonard", true, new BigDecimal(500));
-        fifthDev.sendWelcomeMessage();
-
-        System.out.println(fifthDev);
-
-        QA thirdQa = new QA("t03", "Vincent", true, new BigDecimal(300));
-        QA fourthQa = new QA("t033", "David", true, new BigDecimal(500));
+        IDocumentAction document = new Document(111, "Project for best Team.");
+        document.docPrint();
+        Developer fifthDev = new Developer("dev05", "Leonard", true, new BigDecimal(500));
 
         Team team = initializeData();
-        IProjectEstimationService projectEstimationService = new ProjectEstimationService(); //объявление объекта
+        IProjectEstimationService projectEstimationService = new ProjectEstimationService();
         ProjectOffer projectOffer = projectEstimationService.estimateProject(document, project, team, 2F);
 
         System.out.println("Project price($) =" + projectOffer.getPrice() + ", Time to do(month) =" +
                 projectOffer.getExecutionTime() + ", " + projectOffer.getTeam().getTeamInfo());
-        thirdQa.getDepartmentName();
+
+        fifthDev.sendWelcomeMessage();
+        System.out.println(fifthDev);
+
+        QA thirdQa = new QA("t03", "Vincent", true, new BigDecimal(300));
+        QA fourthQa = new QA("t033", "David", true, new BigDecimal(500));
+        fourthQa.setWorkExperienceMonth(5);
+
         System.out.println(thirdQa);
         System.out.println(fourthQa);
-        System.out.println("Tester 3 и tester 4 has the same idCard? " + thirdQa.equals(fourthQa));//equals
+        System.out.println("Tester 3 и tester 4 has the same idCard? " + thirdQa.equals(fourthQa));
 
-        Employee firstEmplyee = new Employee("E01", "First", false);
-        Employee secondEmplyee = new Employee("E02", "First", true);
-        firstEmplyee.setWorkExperienceMonth(10);
+        Employee firstEmployee = new Employee("E01", "First", false);
+        Employee secondEmployee = new Employee("E02", "First", true);
+        firstEmployee.setWorkExperienceMonth(10);
 
         IEmployeeService employeeService = new EmployeeService();
         employeeService.getLevelOfEmployee(fourthQa);
 
-        System.out.println("Degree of employee " + fourthQa.getRaiting());
+        System.out.println("Degree of employee " + fourthQa.getFirstName() + " " + fourthQa.getRating());
 
         employeeService.sendToCourse(fourthQa);
 
-        System.out.println("Degree of employee after courses " + fourthQa.getRaiting());
+        System.out.println("Degree of employee after courses " + fourthQa.getFirstName() + " " + fourthQa.getRating());
 
-        System.out.println(firstEmplyee + ", " + secondEmplyee);
-        System.out.println("Employee First and Employee Second has the same name? " + firstEmplyee.equals(secondEmplyee));//equals
-
-
+        System.out.println(firstEmployee + ", " + secondEmployee);
+        System.out.println("Employee First and Employee Second has the same name? " + firstEmployee.equals(secondEmployee));//equals
 
     }
 
@@ -83,7 +84,7 @@ public class ITCompany {
         qas[0] = firstQa;
         qas[1] = secondQa;
 
-        ProjectManager firstManager = new ProjectManager( "pm01", "Peter", true,
+        ProjectManager firstManager = new ProjectManager("pm01", "Peter", true,
                 "ProjectManager", new BigDecimal(3000));
         firstManager.setSecondName("Mamonov");
 

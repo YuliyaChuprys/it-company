@@ -7,8 +7,8 @@ public class Developer extends Specialist {
     private String language;
     private BigDecimal salaryPerMonth;
 
-    public Developer (String id, String firstName, boolean isWork, BigDecimal salaryPerMonth) {
-        super(id,  firstName, isWork, "Developer department");
+    public Developer(String id, String firstName, boolean isWork, BigDecimal salaryPerMonth) {
+        super(id, firstName, isWork, "Developer department");
         this.salaryPerMonth = salaryPerMonth;
     }
 
@@ -18,7 +18,7 @@ public class Developer extends Specialist {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Name: " + getFirstName();
     }
 

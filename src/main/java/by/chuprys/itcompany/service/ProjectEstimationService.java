@@ -1,7 +1,7 @@
 package main.java.by.chuprys.itcompany.service;
 
 import main.java.by.chuprys.itcompany.domain.Developer;
-import main.java.by.chuprys.itcompany.domain.Document;
+import main.java.by.chuprys.itcompany.domain.IDocumentAction;
 import main.java.by.chuprys.itcompany.domain.Project;
 import main.java.by.chuprys.itcompany.domain.ProjectOffer;
 import main.java.by.chuprys.itcompany.domain.QA;
@@ -15,8 +15,7 @@ public class ProjectEstimationService implements IProjectEstimationService {
     private static final float MARGIN = 1.5F;
 
     @Override
-    public ProjectOffer estimateProject(Document document, Project project, Team team, float margin) {
-
+    public ProjectOffer estimateProject(IDocumentAction document, Project project, Team team, float margin) {
         int storyPoints = calculateProjectStoryPoints(project.getRequirement());
         int teamCapacity = team.getCapacityPerMonth();
         float numberOfMonth = storyPoints / teamCapacity;
@@ -29,7 +28,7 @@ public class ProjectEstimationService implements IProjectEstimationService {
     }
 
     @Override
-    public ProjectOffer estimateProject(Document document, Project project, Team team) {
+    public ProjectOffer estimateProject(IDocumentAction document, Project project, Team team) {
 
         return estimateProject(document, project, team, MARGIN);
 

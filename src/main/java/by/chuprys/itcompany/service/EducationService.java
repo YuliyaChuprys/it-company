@@ -2,7 +2,7 @@ package main.java.by.chuprys.itcompany.service;
 
 import main.java.by.chuprys.itcompany.domain.Educable;
 
-public class EducationService implements IEducationService{
+public class EducationService implements IEducationService {
 
     @Override
     public void upLevelToMiddle(Educable educable) {
@@ -15,6 +15,5 @@ public class EducationService implements IEducationService{
         System.out.println("Lessons for Middles were passed");
         educable.educate("senior");
     }
-
 
 }
