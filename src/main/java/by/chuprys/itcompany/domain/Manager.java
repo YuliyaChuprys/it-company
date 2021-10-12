@@ -2,19 +2,20 @@ package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 
-public class Manager extends Employee {
+public class Manager extends Employee implements Educable {
 
     private String departmentName;
     private float salaryBonus;
     private BigDecimal salaryPerMonth;
 
-    public Manager(String id, String firstName, boolean isWork, String departmentName){
+    public Manager(String id, String firstName, boolean isWork, String departmentName) {
         super(id, firstName, isWork);
         this.departmentName = departmentName;
     }
 
     @Override
-    public String toString(){return "Manager: " + getFirstName();
+    public String toString() {
+        return "Manager: " + getFirstName();
     }
 
     @Override
@@ -57,5 +58,16 @@ public class Manager extends Employee {
 
     public void setSalaryPerMonth(BigDecimal salaryPerMonth) {
         this.salaryPerMonth = salaryPerMonth;
+    }
+
+    @Override
+    public void educate(String level) {
+        System.out.println("Education in progress ");
+        super.setRating(level);
+    }
+
+    @Override
+    public String getLevel() {
+        return super.getRating();
     }
 }

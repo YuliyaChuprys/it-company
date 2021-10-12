@@ -1,6 +1,6 @@
 package main.java.by.chuprys.itcompany.domain;
 
-public class Document {
+public class Document implements IDocumentAction {
 
     private int documentId;
     private String documentTitle;
@@ -34,6 +34,7 @@ public class Document {
         return documentId;
     }
 
+    @Override
     public int getDocumentId() {
         return documentId;
     }
@@ -42,6 +43,7 @@ public class Document {
         this.documentId = documentId;
     }
 
+    @Override
     public String getDocumentTitle() {
         return documentTitle;
     }
@@ -72,5 +74,22 @@ public class Document {
 
     public void setDocumentAuthor(String documentAuthor) {
         this.documentAuthor = documentAuthor;
+    }
+
+    @Override
+    public void docPrint() {
+        System.out.println("Document was printed. Document ID: " + documentId + ". Document title: " + documentTitle);
+    }
+
+    @Override
+    public void docSendByFax() {
+        System.out.println("Document was send by fax: " + documentId + documentTitle);
+
+    }
+
+    @Override
+    public void docSendByEmail() {
+        System.out.println("Document was send by Email: " + documentId + documentTitle);
+
     }
 }

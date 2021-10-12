@@ -1,22 +1,30 @@
 package main.java.by.chuprys.itcompany.domain;
 
-public abstract class Specialist extends Employee {
+public class Specialist extends Employee implements Educable {
 
     private String departmentName;
 
-    public Specialist(String id, String firstName, boolean isWork, String departmentName){
+    public Specialist(String id, String firstName, boolean isWork, String departmentName) {
         super(id, firstName, isWork);
         this.departmentName = departmentName;
     }
 
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
     @Override
-    public void sendWelcomeMessage(){
+    public void sendWelcomeMessage() {
         System.out.println("Welcome to Best Company Specialist department!");
     }
 
     @Override
-    public String toString(){
-        return "Secialist: " + getFirstName();
+    public String toString() {
+        return "Specialist: " + getFirstName();
     }
 
     @Override
@@ -27,7 +35,7 @@ public abstract class Specialist extends Employee {
 
         Specialist that = (Specialist) o;
 
-        return departmentName.equals(that.departmentName);
+        return departmentName != null ? departmentName.equals(that.departmentName) : that.departmentName == null;
     }
 
     @Override
@@ -37,11 +45,14 @@ public abstract class Specialist extends Employee {
         return result;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    @Override
+    public void educate(String level) {
+        System.out.println("Education in progress ");
+        super.setRating(level);
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    @Override
+    public String getLevel() {
+        return super.getRating();
     }
 }

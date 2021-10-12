@@ -6,7 +6,7 @@ public class Project {
     private Requirement requirement;
     private Customer customer;
 
-    public Project(String projectName, Requirement requirement,Customer customer){
+    public Project(String projectName, Requirement requirement, Customer customer) {
         this.projectName = projectName;
         this.requirement = requirement;
         this.customer = customer;

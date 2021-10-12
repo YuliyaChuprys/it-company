@@ -2,18 +2,18 @@ package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 
-public class QA extends Employee {
+public class QA extends Specialist {
 
     private BigDecimal salaryPerMonth;
 
     public QA(String id, String firstName, boolean isWork, BigDecimal salaryPerMonth) {
-        super(id,  firstName, isWork);
+        super(id, firstName, isWork, "QA department");
         this.salaryPerMonth = salaryPerMonth;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (! super.equals(o)) return false;
+        if (!super.equals(o)) return false;
         if (this == o) return true;
         if (getClass() != o.getClass()) return false;
 
@@ -37,12 +37,8 @@ public class QA extends Employee {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Name: " + getFirstName() + ", Identical ID: " + this.getId();
-    }
-
-    public void getDepartmentName(){
-        System.out.println("Testing department: ");
     }
 
     public BigDecimal getSalaryPerMonth() {

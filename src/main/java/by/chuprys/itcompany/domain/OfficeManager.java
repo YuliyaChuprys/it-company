@@ -1,6 +1,6 @@
 package main.java.by.chuprys.itcompany.domain;
 
-public class OfficeManager extends Woker {
+public class OfficeManager extends Worker {
 
     public OfficeManager(String id, String firstName, boolean isWork, boolean uniform) {
         super(id, firstName, isWork, uniform);

@@ -1,6 +1,6 @@
 package main.java.by.chuprys.itcompany.domain;
 
-public class Cleaning extends Woker {
+public class Cleaning extends Worker {
 
     private String companyName;
     private String companyAddress;

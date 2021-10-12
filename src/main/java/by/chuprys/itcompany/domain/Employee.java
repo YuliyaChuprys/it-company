@@ -11,10 +11,9 @@ public class Employee {
     private String passportData;
     private LocalDate dateOfBirthday;
     private int workExperienceMonth;
-    private String raiting;
+    private String rating;
 
     public Employee(String id, String firstName, boolean isWork) {
-
         this.id = id;
         this.firstName = firstName;
         this.isWork = isWork;
@@ -34,7 +33,7 @@ public class Employee {
                 ", passportData='" + passportData + '\'' +
                 ", dateOfBirthday=" + dateOfBirthday +
                 ", workExperienceMonth=" + workExperienceMonth +
-                ", raiting='" + raiting + '\'' +
+                ", rating='" + rating + '\'' +
                 '}';
     }
 
@@ -54,7 +53,7 @@ public class Employee {
             return false;
         if (dateOfBirthday != null ? !dateOfBirthday.equals(employee.dateOfBirthday) : employee.dateOfBirthday != null)
             return false;
-        return raiting != null ? raiting.equals(employee.raiting) : employee.raiting == null;
+        return rating != null ? rating.equals(employee.rating) : employee.rating == null;
     }
 
     @Override
@@ -66,16 +65,16 @@ public class Employee {
         result = 31 * result + (passportData != null ? passportData.hashCode() : 0);
         result = 31 * result + (dateOfBirthday != null ? dateOfBirthday.hashCode() : 0);
         result = 31 * result + workExperienceMonth;
-        result = 31 * result + (raiting != null ? raiting.hashCode() : 0);
+        result = 31 * result + (rating != null ? rating.hashCode() : 0);
         return result;
     }
 
-    public String getRaiting() {
-        return raiting;
+    public String getRating() {
+        return rating;
     }
 
-    public void setRaiting(String raiting) {
-        this.raiting = raiting;
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public String getId() {
