@@ -1,5 +1,7 @@
 package main.java.by.chuprys.itcompany.domain;
 
+import main.java.by.chuprys.itcompany.exeption.InvalidWorkExperienceMonth;
+
 import java.time.LocalDate;
 
 public class Employee {
@@ -129,9 +131,14 @@ public class Employee {
         return workExperienceMonth;
     }
 
-    public void setWorkExperienceMonth(int workExperienceMonth) {
+    public void setWorkExperienceMonth(int workExperienceMonth) throws InvalidWorkExperienceMonth {
+
+        if (workExperienceMonth < 0) {
+            throw new InvalidWorkExperienceMonth("Incorrect value of workOfExperience is entered");
+        }
         this.workExperienceMonth = workExperienceMonth;
     }
-
 }
+
+
 

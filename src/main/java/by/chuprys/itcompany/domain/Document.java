@@ -1,5 +1,7 @@
 package main.java.by.chuprys.itcompany.domain;
 
+import main.java.by.chuprys.itcompany.exeption.InvalidDocumentData;
+
 public class Document implements IDocumentAction {
 
     private int documentId;
@@ -30,7 +32,12 @@ public class Document implements IDocumentAction {
 
     }
 
-        @Override
+    @Override
+    public String setDocumentDescription() {
+        return null;
+    }
+
+    @Override
     public int getDocumentId() {
         return documentId;
     }
@@ -73,7 +80,11 @@ public class Document implements IDocumentAction {
         return documentDescription;
     }
 
+    @Override
     public void setDocumentDescription(String documentDescription) {
+        if ( documentTitle.contains("@" + "-") ){
+            throw new InvalidDocumentData("Document description is invalid");
+        }
         this.documentDescription = documentDescription;
     }
 

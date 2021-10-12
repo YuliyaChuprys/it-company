@@ -12,4 +12,7 @@ public interface IDocumentAction {
 
     void docSendByEmail();
 
+    String setDocumentDescription();
+
+    void setDocumentDescription(String documentDescription);
 }
