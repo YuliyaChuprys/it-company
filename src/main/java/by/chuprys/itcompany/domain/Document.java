@@ -14,6 +14,33 @@ public class Document implements IDocumentAction {
     }
 
     @Override
+    public void docPrint() {
+        System.out.println("Document was printed. Document ID: " + documentId + ". Document title: " + documentTitle);
+    }
+
+    @Override
+    public void docSendByFax() {
+        System.out.println("Document was send by fax: " + documentId + documentTitle);
+
+    }
+
+    @Override
+    public void docSendByEmail() {
+        System.out.println("Document was send by Email: " + documentId + documentTitle);
+
+    }
+
+        @Override
+    public int getDocumentId() {
+        return documentId;
+    }
+
+    @Override
+    public String getDocumentTitle() {
+        return documentTitle;
+    }
+
+    @Override
     public String toString() {
         return "Document title: " + documentTitle;
     }
@@ -34,21 +61,11 @@ public class Document implements IDocumentAction {
         return documentId;
     }
 
-    @Override
-    public int getDocumentId() {
-        return documentId;
-    }
-
     public void setDocumentId(int documentId) {
         this.documentId = documentId;
     }
 
-    @Override
-    public String getDocumentTitle() {
-        return documentTitle;
-    }
-
-    public void setDocumentTitle(String documentTitle) {
+   public void setDocumentTitle(String documentTitle) {
         this.documentTitle = documentTitle;
     }
 
@@ -76,20 +93,4 @@ public class Document implements IDocumentAction {
         this.documentAuthor = documentAuthor;
     }
 
-    @Override
-    public void docPrint() {
-        System.out.println("Document was printed. Document ID: " + documentId + ". Document title: " + documentTitle);
-    }
-
-    @Override
-    public void docSendByFax() {
-        System.out.println("Document was send by fax: " + documentId + documentTitle);
-
-    }
-
-    @Override
-    public void docSendByEmail() {
-        System.out.println("Document was send by Email: " + documentId + documentTitle);
-
-    }
 }

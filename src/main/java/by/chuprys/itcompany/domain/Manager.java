@@ -14,6 +14,17 @@ public class Manager extends Employee implements Educable {
     }
 
     @Override
+    public void educate(String level) {
+        System.out.println("Education in progress ");
+        super.setRating(level);
+    }
+
+    @Override
+    public String getLevel() {
+        return super.getRating();
+    }
+
+    @Override
     public String toString() {
         return "Manager: " + getFirstName();
     }
@@ -60,14 +71,4 @@ public class Manager extends Employee implements Educable {
         this.salaryPerMonth = salaryPerMonth;
     }
 
-    @Override
-    public void educate(String level) {
-        System.out.println("Education in progress ");
-        super.setRating(level);
-    }
-
-    @Override
-    public String getLevel() {
-        return super.getRating();
-    }
 }

@@ -4,11 +4,12 @@ public interface IDocumentAction {
 
     void docPrint();
 
+    int getDocumentId();
+
+    String getDocumentTitle();
+
     void docSendByFax();
 
     void docSendByEmail();
 
-    int getDocumentId();
-
-    String getDocumentTitle();
 }

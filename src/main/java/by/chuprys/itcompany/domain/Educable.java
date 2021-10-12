@@ -5,4 +5,5 @@ public interface Educable {
     void educate(String level);
 
     String getLevel();
+
 }

@@ -9,6 +9,17 @@ public class Specialist extends Employee implements Educable {
         this.departmentName = departmentName;
     }
 
+    @Override
+    public void educate(String level) {
+        System.out.println("Education in progress ");
+        super.setRating(level);
+    }
+
+    @Override
+    public String getLevel() {
+        return super.getRating();
+    }
+
     public String getDepartmentName() {
         return departmentName;
     }
@@ -45,14 +56,4 @@ public class Specialist extends Employee implements Educable {
         return result;
     }
 
-    @Override
-    public void educate(String level) {
-        System.out.println("Education in progress ");
-        super.setRating(level);
-    }
-
-    @Override
-    public String getLevel() {
-        return super.getRating();
-    }
-}
+   }

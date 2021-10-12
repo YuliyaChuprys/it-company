@@ -47,4 +47,5 @@ public class LeadDevelop extends Manager {
     public void setOnProject(boolean onProject) {
         isOnProject = onProject;
     }
+
 }
