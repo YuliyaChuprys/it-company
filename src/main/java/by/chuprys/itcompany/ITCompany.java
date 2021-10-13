@@ -2,6 +2,7 @@ package main.java.by.chuprys.itcompany;
 
 import main.java.by.chuprys.itcompany.domain.Customer;
 import main.java.by.chuprys.itcompany.domain.IDocumentAction;
+import main.java.by.chuprys.itcompany.exeption.InvalidDocumentData;
 import main.java.by.chuprys.itcompany.exeption.InvalidWorkExperienceMonth;
 import main.java.by.chuprys.itcompany.service.EducationService;
 import main.java.by.chuprys.itcompany.service.EmployeeService;
@@ -30,8 +31,19 @@ public class ITCompany {
         Requirement requirement = new Requirement(20221001, "Create new cool project", 8,
                 LocalDate.parse("2022-10-01"));
         Project project = new Project("NewProject", requirement, customer);
-        IDocumentAction document = new Document(111, "Best project ever");
-        document.setDocumentDescription("@@@@@");
+        IDocumentAction document = new Document(000, "Best project ever");
+        /**
+         * Check DocumentDescription
+         */
+        try {
+            document.setDocumentDescription("-rfrf");
+            document.setDocumentAuthor("R2D2");
+        } catch (InvalidDocumentData e) {
+            System.out.println("Document Description is invalid");
+            System.out.println("Invalid document Author");
+        } finally {
+            System.out.println("After operation");
+        }
 
         document.docPrint();
         Developer fifthDev = new Developer("dev05", "Leonard", true, new BigDecimal(500));
@@ -49,8 +61,8 @@ public class ITCompany {
         QA thirdQa = new QA("t03", "Vincent", true, new BigDecimal(300));
         QA fourthQa = new QA("t033", "David", true, new BigDecimal(500));
         try {
-            fourthQa.setWorkExperienceMonth(5);}
-        catch (InvalidWorkExperienceMonth e){
+            fourthQa.setWorkExperienceMonth(5);
+        } catch (InvalidWorkExperienceMonth e) {
             System.out.println("Work of experience set invalid");
         } finally {
             System.out.println("After operation");
@@ -63,8 +75,8 @@ public class ITCompany {
         Employee firstEmployee = new Employee("E01", "First", false);
         Employee secondEmployee = new Employee("E02", "First", true);
         try {
-            firstEmployee.setWorkExperienceMonth(-2);}
-        catch (InvalidWorkExperienceMonth e){
+            firstEmployee.setWorkExperienceMonth(-2);
+        } catch (InvalidWorkExperienceMonth e) {
             System.out.println("Work of experience set invalid");
         } finally {
             System.out.println("After operation");
