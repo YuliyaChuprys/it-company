@@ -8,12 +8,12 @@ public class Resourse implements AutoCloseable {
 
     private static final Logger LOGGER = LogManager.getLogger(Resourse.class);
 
-    public void connect(){
+    public void connect() {
         LOGGER.debug("Connected");
     }
 
     @Override
-    public void close()  {
+    public void close() {
         LOGGER.debug("Connection closed");
 
     }
