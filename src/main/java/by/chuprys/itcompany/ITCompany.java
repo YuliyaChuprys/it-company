@@ -4,6 +4,7 @@ import main.java.by.chuprys.itcompany.domain.Customer;
 import main.java.by.chuprys.itcompany.domain.IDocumentAction;
 import main.java.by.chuprys.itcompany.exeption.InvalidDocumentData;
 import main.java.by.chuprys.itcompany.exeption.InvalidWorkExperienceMonth;
+import main.java.by.chuprys.itcompany.exeption.Resourse;
 import main.java.by.chuprys.itcompany.service.EducationService;
 import main.java.by.chuprys.itcompany.service.EmployeeService;
 import main.java.by.chuprys.itcompany.domain.Developer;
@@ -19,30 +20,46 @@ import main.java.by.chuprys.itcompany.service.IEducationService;
 import main.java.by.chuprys.itcompany.service.IEmployeeService;
 import main.java.by.chuprys.itcompany.service.IProjectEstimationService;
 import main.java.by.chuprys.itcompany.service.ProjectEstimationService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class ITCompany {
 
+    static {
+        System.setProperty("log4j.configurationFile", "log4j2.xml");
+    }
+
+    private static final Logger LOGGER = LogManager.getLogger(ITCompany.class);
+
     public static void main(String[] args) {
+
         Customer customer = new Customer("Grape", "+375291112233", "BigBoss",
                 "email@mail.ru");
         Requirement requirement = new Requirement(20221001, "Create new cool project", 8,
                 LocalDate.parse("2022-10-01"));
         Project project = new Project("NewProject", requirement, customer);
         IDocumentAction document = new Document(000, "Best project ever");
+
         /**
          * Check DocumentDescription
          */
+        //document.setDocumentTitle("Report"); //This show us exeption
         try {
             document.setDocumentDescription("-rfrf");
             document.setDocumentAuthor("R2D2");
         } catch (InvalidDocumentData e) {
-            System.out.println("Document Description is invalid");
-            System.out.println("Invalid document Author");
+            LOGGER.debug("Document Description is invalid. " + e.getMessage());
+            LOGGER.debug("Invalid document Author");
         } finally {
-            System.out.println("After operation");
+            LOGGER.debug("After operation");
+        }
+
+        try (Resourse resourse = new Resourse()) {
+            System.out.println(" ");
         }
 
         document.docPrint();
@@ -63,7 +80,7 @@ public class ITCompany {
         try {
             fourthQa.setWorkExperienceMonth(5);
         } catch (InvalidWorkExperienceMonth e) {
-            System.out.println("Work of experience set invalid");
+            System.out.println("Work of experience set invalid. " + e.getMessage());
         } finally {
             System.out.println("After operation");
         }
@@ -77,9 +94,9 @@ public class ITCompany {
         try {
             firstEmployee.setWorkExperienceMonth(-2);
         } catch (InvalidWorkExperienceMonth e) {
-            System.out.println("Work of experience set invalid");
+            LOGGER.debug("Work of experience set invalid");
         } finally {
-            System.out.println("After operation");
+            LOGGER.debug("After operation");
         }
 
         IEducationService educationService = new EducationService();

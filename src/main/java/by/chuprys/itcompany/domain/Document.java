@@ -69,24 +69,18 @@ public class Document implements IDocumentAction {
     }
 
     public void setDocumentId(int documentId) {
-        try{
-        if (documentId == 000){
+        if (documentId == 000) {
             throw new InvalidDocumentData("Document ID is invalid");
         }
-        }
-        catch(InvalidDocumentData e) {
-            System.out.println("Document Description is invalid");
-        } finally {
-            System.out.println("After operation1");
-        }
+
         this.documentId = documentId;
     }
 
     @Override
-   public void setDocumentTitle(String documentTitle) {
-       if ( documentTitle.contains("Report") ){
-           throw new InvalidDocumentData("Document Title is invalid");
-       }
+    public void setDocumentTitle(String documentTitle) {
+        if (documentTitle.contains("Report")) {
+            throw new InvalidDocumentData("Document Title is invalid");
+        }
         this.documentTitle = documentTitle;
     }
 
@@ -96,10 +90,9 @@ public class Document implements IDocumentAction {
 
     @Override
     public void setDocumentDescription(String documentDescription) {
-        if ( documentDescription.contains("@")| documentDescription.contains("-") | documentDescription.contains("#")|
-                documentDescription.contains("$")| documentDescription.contains("%")| documentDescription.contains("^")|
-                documentDescription.contains("&")| documentDescription.contains("*")| documentDescription.contains("="))
-        {
+        if (documentDescription.contains("@") | documentDescription.contains("-") | documentDescription.contains("#") |
+                documentDescription.contains("$") | documentDescription.contains("%") | documentDescription.contains("^") |
+                documentDescription.contains("&") | documentDescription.contains("*") | documentDescription.contains("=")) {
             throw new InvalidDocumentData("Document description is invalid");
         }
         this.documentDescription = documentDescription;
@@ -119,7 +112,7 @@ public class Document implements IDocumentAction {
 
     @Override
     public void setDocumentAuthor(String documentAuthor) {
-        if (documentAuthor.contains("2")){
+        if (documentAuthor.contains("2")) {
             throw new InvalidDocumentData("Invalid Document Author");
         }
         this.documentAuthor = documentAuthor;
