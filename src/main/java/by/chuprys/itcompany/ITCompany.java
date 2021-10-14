@@ -4,7 +4,7 @@ import main.java.by.chuprys.itcompany.domain.Customer;
 import main.java.by.chuprys.itcompany.domain.IDocumentAction;
 import main.java.by.chuprys.itcompany.exeption.InvalidDocumentData;
 import main.java.by.chuprys.itcompany.exeption.InvalidWorkExperienceMonth;
-import main.java.by.chuprys.itcompany.exeption.Resourse;
+import main.java.by.chuprys.itcompany.domain.Resource;
 import main.java.by.chuprys.itcompany.service.EducationService;
 import main.java.by.chuprys.itcompany.service.EmployeeService;
 import main.java.by.chuprys.itcompany.domain.Developer;
@@ -37,12 +37,13 @@ public class ITCompany {
 
     public static void main(String[] args) {
 
+
         Customer customer = new Customer("Grape", "+375291112233", "BigBoss",
                 "email@mail.ru");
         Requirement requirement = new Requirement(20221001, "Create new cool project", 8,
                 LocalDate.parse("2022-10-01"));
         Project project = new Project("NewProject", requirement, customer);
-        IDocumentAction document = new Document(000, "Best project ever");
+        IDocumentAction document = new Document(011, "Best project ever");
 
         /**
          * Check DocumentDescription
@@ -58,7 +59,7 @@ public class ITCompany {
             LOGGER.debug("After operation");
         }
 
-        try (Resourse resourse = new Resourse()) {
+        try (Resource resourse = new Resource()) {
             System.out.println(" ");
         }
 
