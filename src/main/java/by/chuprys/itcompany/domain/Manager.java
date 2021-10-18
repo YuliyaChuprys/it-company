@@ -2,11 +2,15 @@ package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 
-public class Manager extends Employee implements Educable {
+public class Manager<PM extends ProjectManager, LD extends LeadDevelop, LQ extends LeadQa>
+        extends Employee implements Educable {
 
     private String departmentName;
     private float salaryBonus;
     private BigDecimal salaryPerMonth;
+    private PM[] projectManager;
+    private LD[] leadDeveloper;
+    private LQ[] leadQa;
 
     public Manager(String id, String firstName, boolean isWork, String departmentName) {
         super(id, firstName, isWork);
@@ -45,6 +49,30 @@ public class Manager extends Employee implements Educable {
         int result = super.hashCode();
         result = 31 * result + departmentName.hashCode();
         return result;
+    }
+
+    public PM[] getProjectManager() {
+        return projectManager;
+    }
+
+    public void setProjectManager(PM[] projectManager) {
+        this.projectManager = projectManager;
+    }
+
+    public LD[] getLeadDeveloper() {
+        return leadDeveloper;
+    }
+
+    public void setLeadDeveloper(LD[] leadDeveloper) {
+        this.leadDeveloper = leadDeveloper;
+    }
+
+    public LQ[] getLeadQa() {
+        return leadQa;
+    }
+
+    public void setLeadQa(LQ[] leadQa) {
+        this.leadQa = leadQa;
     }
 
     public String getDepartmentName() {

@@ -30,13 +30,15 @@ public class Developer extends Specialist {
 
         Developer developer = (Developer) o;
 
-        return language.equals(developer.language);
+        if (language != null ? !language.equals(developer.language) : developer.language != null) return false;
+        return salaryPerMonth != null ? salaryPerMonth.equals(developer.salaryPerMonth) : developer.salaryPerMonth == null;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + language.hashCode();
+        result = 31 * result + (language != null ? language.hashCode() : 0);
+        result = 31 * result + (salaryPerMonth != null ? salaryPerMonth.hashCode() : 0);
         return result;
     }
 

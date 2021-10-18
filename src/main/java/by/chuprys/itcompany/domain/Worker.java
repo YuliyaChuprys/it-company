@@ -2,10 +2,12 @@ package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 
-public class Worker extends Employee {
+public class Worker<C extends Cleaning, O extends OfficeManager> extends Employee {
 
     private BigDecimal salary;
     private boolean uniform;
+    private C[] cleaning;
+    private O[] officeManager;
 
     public Worker(String id, String firstName, boolean isWork, boolean uniform) {
         super(id, firstName, isWork);
@@ -34,6 +36,22 @@ public class Worker extends Employee {
         int result = super.hashCode();
         result = 31 * result + (uniform ? 1 : 0);
         return result;
+    }
+
+    public C[] getCleaning() {
+        return cleaning;
+    }
+
+    public void setCleaning(C[] cleaning) {
+        this.cleaning = cleaning;
+    }
+
+    public O[] getOfficeManager() {
+        return officeManager;
+    }
+
+    public void setOfficeManager(O[] officeManager) {
+        this.officeManager = officeManager;
     }
 
     public BigDecimal getSalary() {

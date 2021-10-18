@@ -1,7 +1,9 @@
 package main.java.by.chuprys.itcompany;
 
+import main.java.by.chuprys.itcompany.domain.Cleaning;
 import main.java.by.chuprys.itcompany.domain.Customer;
 import main.java.by.chuprys.itcompany.domain.IDocumentAction;
+import main.java.by.chuprys.itcompany.domain.Worker;
 import main.java.by.chuprys.itcompany.exeption.InvalidDocumentData;
 import main.java.by.chuprys.itcompany.exeption.InvalidWorkExperienceMonth;
 import main.java.by.chuprys.itcompany.domain.Resource;
@@ -138,5 +140,6 @@ public class ITCompany {
 
         return new Team(60, developers, qas, firstManager);
     }
+
 
 }
