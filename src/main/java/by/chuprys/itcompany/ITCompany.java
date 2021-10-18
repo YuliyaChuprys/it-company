@@ -1,9 +1,7 @@
 package main.java.by.chuprys.itcompany;
 
-import main.java.by.chuprys.itcompany.domain.Cleaning;
 import main.java.by.chuprys.itcompany.domain.Customer;
 import main.java.by.chuprys.itcompany.domain.IDocumentAction;
-import main.java.by.chuprys.itcompany.domain.Worker;
 import main.java.by.chuprys.itcompany.exeption.InvalidDocumentData;
 import main.java.by.chuprys.itcompany.exeption.InvalidWorkExperienceMonth;
 import main.java.by.chuprys.itcompany.domain.Resource;
@@ -28,6 +26,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ITCompany {
 
@@ -94,6 +94,11 @@ public class ITCompany {
 
         Employee firstEmployee = new Employee("E01", "First", false);
         Employee secondEmployee = new Employee("E02", "First", true);
+
+        List<Employee> employeeList = new ArrayList<>();
+        employeeList.add(firstEmployee);
+        employeeList.add(secondEmployee);
+
         try {
             firstEmployee.setWorkExperienceMonth(-2);
         } catch (InvalidWorkExperienceMonth e) {
