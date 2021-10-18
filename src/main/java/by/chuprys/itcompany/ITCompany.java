@@ -27,7 +27,12 @@ import org.apache.logging.log4j.Logger;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class ITCompany {
 
@@ -44,7 +49,21 @@ public class ITCompany {
                 "email@mail.ru");
         Requirement requirement = new Requirement(20221001, "Create new cool project", 8,
                 LocalDate.parse("2022-10-01"));
+
+        /**
+         * Craete HashMap for Employes with key-value: id Employee, in Vocation - true, in Work - false
+         **/
+        Map<String, Boolean> iDEmployeeIsInVocation = new HashMap();
+        iDEmployeeIsInVocation.put("d007", true);
+        iDEmployeeIsInVocation.put("qa005", true);
+        iDEmployeeIsInVocation.put("pm008", true);
+
+
         Project project = new Project("NewProject", requirement, customer);
+
+        Set<Project> projects = new TreeSet<>();
+        projects.add(project);
+
         IDocumentAction document = new Document(011, "Best project ever");
 
         /**
@@ -123,25 +142,29 @@ public class ITCompany {
     }
 
     public static Team initializeData() {
-        Developer[] developers = new Developer[3];
-        QA[] qas = new QA[2];
+
         Developer firstDev = new Developer("dev01", "Michelangelo", true, new BigDecimal(3500));
         Developer secondDev = new Developer("dev02", "Donatello", true, new BigDecimal(4000));
         Developer fourthDev = new Developer("dev04", "Rafael", true, new BigDecimal(5000));
 
-        developers[0] = firstDev;
-        developers[1] = secondDev;
-        developers[2] = fourthDev;
-
         QA firstQa = new QA("t01", "Damiano", true, new BigDecimal(1000));
         QA secondQa = new QA("t02", "Stefan", true, new BigDecimal(900));
 
-        qas[0] = firstQa;
-        qas[1] = secondQa;
+        Set<Developer> developers = new HashSet<>();
+        developers.add(firstDev);
+        developers.add(secondDev);
+        developers.add(fourthDev);
+
+        Set<QA> qas = new HashSet<>();
+        qas.add(firstQa);
+        qas.add(secondQa);
 
         ProjectManager firstManager = new ProjectManager("pm01", "Peter", true,
                 "ProjectManager", new BigDecimal(3000));
         firstManager.setSecondName("Mamonov");
+
+        Set<ProjectManager> projectManagers = new HashSet<>();
+        projectManagers.add(firstManager);
 
         return new Team(60, developers, qas, firstManager);
     }

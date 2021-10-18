@@ -1,6 +1,6 @@
 package main.java.by.chuprys.itcompany.domain;
 
-public class Project {
+public class Project implements Comparable {
 
     private String projectName;
     private Requirement requirement;
@@ -36,4 +36,8 @@ public class Project {
         this.customer = customer;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
 }
