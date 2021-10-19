@@ -1,6 +1,7 @@
 package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Manager<PM extends ProjectManager, LD extends LeadDevelop, LQ extends LeadQa>
         extends Employee implements Educable {
@@ -8,9 +9,9 @@ public class Manager<PM extends ProjectManager, LD extends LeadDevelop, LQ exten
     private String departmentName;
     private float salaryBonus;
     private BigDecimal salaryPerMonth;
-    private PM[] projectManager;
-    private LD[] leadDeveloper;
-    private LQ[] leadQa;
+    private List<PM> projectManager;
+    private List<LD> leadDeveloper;
+    private List<LQ> leadQa;
 
     public Manager(String id, String firstName, boolean isWork, String departmentName) {
         super(id, firstName, isWork);
@@ -51,27 +52,27 @@ public class Manager<PM extends ProjectManager, LD extends LeadDevelop, LQ exten
         return result;
     }
 
-    public PM[] getProjectManager() {
+    public List<PM> getProjectManager() {
         return projectManager;
     }
 
-    public void setProjectManager(PM[] projectManager) {
+    public void setProjectManager(List<PM> projectManager) {
         this.projectManager = projectManager;
     }
 
-    public LD[] getLeadDeveloper() {
+    public List<LD> getLeadDeveloper() {
         return leadDeveloper;
     }
 
-    public void setLeadDeveloper(LD[] leadDeveloper) {
+    public void setLeadDeveloper(List<LD> leadDeveloper) {
         this.leadDeveloper = leadDeveloper;
     }
 
-    public LQ[] getLeadQa() {
+    public List<LQ> getLeadQa() {
         return leadQa;
     }
 
-    public void setLeadQa(LQ[] leadQa) {
+    public void setLeadQa(List<LQ> leadQa) {
         this.leadQa = leadQa;
     }
 

@@ -1,6 +1,6 @@
 package main.java.by.chuprys.itcompany.domain;
 
-public class Cleaning extends Worker {
+public class Cleaning<C extends Cleaning, O extends OfficeManager> extends Worker<C, O> {
 
     private String companyName;
     private String companyAddress;

@@ -1,19 +1,17 @@
 package main.java.by.chuprys.itcompany.domain;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.List;
 
 public class Team {
 
     private int capacityPerMonth;
-    private Set<Developer> developers;
-    private Set<QA> qas;
+    private List<Developer> developers;
+    private List<QA> qas;
     private ProjectManager projectManager;
     private LocalDateTime projectEnd;
 
-    public Team(int capacityPerMonth, Set<Developer> developers, Set<QA> qas, ProjectManager projectManager) {
+    public Team(int capacityPerMonth, List<Developer> developers, List<QA> qas, ProjectManager projectManager) {
         this.capacityPerMonth = capacityPerMonth;
         this.developers = developers;
         this.qas = qas;
@@ -56,19 +54,19 @@ public class Team {
         this.capacityPerMonth = capacityPerMonth;
     }
 
-    public Set<Developer> getDevelopers() {
+    public List<Developer> getDevelopers() {
         return developers;
     }
 
-    public void setDevelopers(Set<Developer> developers) {
+    public void setDevelopers(List<Developer> developers) {
         this.developers = developers;
     }
 
-    public Set<QA> getQas() {
+    public List<QA> getQas() {
         return qas;
     }
 
-    public void setQas(Set<QA> qas) {
+    public void setQas(List<QA> qas) {
         this.qas = qas;
     }
 
@@ -78,6 +76,14 @@ public class Team {
 
     public void setProjectManager(ProjectManager projectManager) {
         this.projectManager = projectManager;
+    }
+
+    public LocalDateTime getProjectEnd() {
+        return projectEnd;
+    }
+
+    public void setProjectEnd(LocalDateTime projectEnd) {
+        this.projectEnd = projectEnd;
     }
 
     public String getTeamInfo() {

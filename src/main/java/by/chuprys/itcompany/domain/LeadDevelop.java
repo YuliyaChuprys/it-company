@@ -1,6 +1,7 @@
 package main.java.by.chuprys.itcompany.domain;
 
-public class LeadDevelop extends Manager {
+public class LeadDevelop<PM extends ProjectManager, LD extends LeadDevelop, LQ extends LeadQa>
+        extends Manager<PM, LD, LQ> {
 
     private String language;
     private boolean isOnProject;

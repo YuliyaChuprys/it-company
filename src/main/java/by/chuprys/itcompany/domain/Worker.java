@@ -1,13 +1,14 @@
 package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Worker<C extends Cleaning, O extends OfficeManager> extends Employee {
 
     private BigDecimal salary;
     private boolean uniform;
-    private C[] cleaning;
-    private O[] officeManager;
+    private List<C> cleaning;
+    private List<O> officeManager;
 
     public Worker(String id, String firstName, boolean isWork, boolean uniform) {
         super(id, firstName, isWork);
@@ -38,19 +39,19 @@ public class Worker<C extends Cleaning, O extends OfficeManager> extends Employe
         return result;
     }
 
-    public C[] getCleaning() {
+    public List<C> getCleaning() {
         return cleaning;
     }
 
-    public void setCleaning(C[] cleaning) {
+    public void setCleaning(List<C> cleaning) {
         this.cleaning = cleaning;
     }
 
-    public O[] getOfficeManager() {
+    public List<O> getOfficeManager() {
         return officeManager;
     }
 
-    public void setOfficeManager(O[] officeManager) {
+    public void setOfficeManager(List<O> officeManager) {
         this.officeManager = officeManager;
     }
 

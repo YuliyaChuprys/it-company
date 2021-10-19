@@ -2,7 +2,8 @@ package main.java.by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 
-public class ProjectManager extends Manager {
+public class ProjectManager<PM extends ProjectManager, LD extends LeadDevelop, LQ extends LeadQa>
+        extends Manager<PM, LD,LQ> {
 
     private BigDecimal salaryPerMonth;
 

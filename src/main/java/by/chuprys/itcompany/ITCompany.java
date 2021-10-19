@@ -2,6 +2,7 @@ package main.java.by.chuprys.itcompany;
 
 import main.java.by.chuprys.itcompany.domain.Customer;
 import main.java.by.chuprys.itcompany.domain.IDocumentAction;
+import main.java.by.chuprys.itcompany.domain.LeadQa;
 import main.java.by.chuprys.itcompany.exeption.InvalidDocumentData;
 import main.java.by.chuprys.itcompany.exeption.InvalidWorkExperienceMonth;
 import main.java.by.chuprys.itcompany.domain.Resource;
@@ -51,7 +52,7 @@ public class ITCompany {
                 LocalDate.parse("2022-10-01"));
 
         /**
-         * Craete HashMap for Employes with key-value: id Employee, in Vocation - true, in Work - false
+         * Create HashMap for Employees with key-value: id Employee, in Vocation - true, in Work - false
          **/
         Map<String, Boolean> iDEmployeeIsInVocation = new HashMap();
         iDEmployeeIsInVocation.put("d007", true);
@@ -80,7 +81,7 @@ public class ITCompany {
             LOGGER.debug("After operation");
         }
 
-        try (Resource resourse = new Resource()) {
+        try (Resource resource = new Resource()) {
             System.out.println(" ");
         }
 
@@ -114,9 +115,13 @@ public class ITCompany {
         Employee firstEmployee = new Employee("E01", "First", false);
         Employee secondEmployee = new Employee("E02", "First", true);
 
-        List<Employee> employeeList = new ArrayList<>();
-        employeeList.add(firstEmployee);
-        employeeList.add(secondEmployee);
+        List<Employee> employee = new ArrayList<>();
+        employee.add(firstEmployee);
+        employee.add(secondEmployee);
+
+        LeadQa leadQa = new LeadQa("LQA01", "Iva", true, "Testing");
+        List<LeadQa> managers = new ArrayList<>();
+        managers.add(leadQa);
 
         try {
             firstEmployee.setWorkExperienceMonth(-2);
@@ -150,12 +155,12 @@ public class ITCompany {
         QA firstQa = new QA("t01", "Damiano", true, new BigDecimal(1000));
         QA secondQa = new QA("t02", "Stefan", true, new BigDecimal(900));
 
-        Set<Developer> developers = new HashSet<>();
+        List<Developer> developers = new ArrayList<>();
         developers.add(firstDev);
         developers.add(secondDev);
         developers.add(fourthDev);
 
-        Set<QA> qas = new HashSet<>();
+        List<QA> qas = new ArrayList<>();
         qas.add(firstQa);
         qas.add(secondQa);
 
