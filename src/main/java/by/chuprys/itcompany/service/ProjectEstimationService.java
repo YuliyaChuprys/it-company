@@ -9,6 +9,9 @@ import main.java.by.chuprys.itcompany.domain.Requirement;
 import main.java.by.chuprys.itcompany.domain.Team;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class ProjectEstimationService implements IProjectEstimationService {
 
@@ -35,16 +38,16 @@ public class ProjectEstimationService implements IProjectEstimationService {
     }
 
     private BigDecimal calculateTeamSalaryPerMonth(Team team) {
-        Developer[] developers = team.getDevelopers();
-        QA[] qas = team.getQas();
+        Set<Developer> developers = team.getDevelopers();
+        Set<QA> qas = team.getQas();
         BigDecimal teamSalaries = new BigDecimal(0);
 
-        for (int i = 0; i < developers.length; i++) {
-            teamSalaries = teamSalaries.add(developers[i].getSalaryPerMonth());
+        for (Developer developer:developers) {
+            teamSalaries = teamSalaries.add(developer.getSalaryPerMonth());
         }
 
-        for (int i = 0; i < qas.length; i++) {
-            teamSalaries = teamSalaries.add(qas[i].getSalaryPerMonth());
+        for (QA qa:qas) {
+            teamSalaries = teamSalaries.add(qa.getSalaryPerMonth());
         }
 
         teamSalaries = teamSalaries.add(team.getProjectManager().getSalaryPerMonth());

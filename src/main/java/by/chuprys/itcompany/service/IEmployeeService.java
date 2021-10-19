@@ -8,4 +8,5 @@ public interface IEmployeeService {
     void getLevelOfEmployee(Employee employee);
 
     void sendToCourse(Educable educable);
+
 }

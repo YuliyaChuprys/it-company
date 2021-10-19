@@ -1,5 +1,7 @@
 package main.java.by.chuprys.itcompany.domain;
 
+import main.java.by.chuprys.itcompany.exeption.InvalidDocumentData;
+
 public class Document implements IDocumentAction {
 
     private int documentId;
@@ -30,7 +32,12 @@ public class Document implements IDocumentAction {
 
     }
 
-        @Override
+    @Override
+    public String setDocumentDescription() {
+        return null;
+    }
+
+    @Override
     public int getDocumentId() {
         return documentId;
     }
@@ -62,10 +69,18 @@ public class Document implements IDocumentAction {
     }
 
     public void setDocumentId(int documentId) {
+        if (documentId == 000) {
+            throw new InvalidDocumentData("Document ID is invalid");
+        }
+
         this.documentId = documentId;
     }
 
-   public void setDocumentTitle(String documentTitle) {
+    @Override
+    public void setDocumentTitle(String documentTitle) {
+        if (documentTitle.contains("Report")) {
+            throw new InvalidDocumentData("Document Title is invalid");
+        }
         this.documentTitle = documentTitle;
     }
 
@@ -73,7 +88,13 @@ public class Document implements IDocumentAction {
         return documentDescription;
     }
 
+    @Override
     public void setDocumentDescription(String documentDescription) {
+        if (documentDescription.contains("@") | documentDescription.contains("-") | documentDescription.contains("#") |
+                documentDescription.contains("$") | documentDescription.contains("%") | documentDescription.contains("^") |
+                documentDescription.contains("&") | documentDescription.contains("*") | documentDescription.contains("=")) {
+            throw new InvalidDocumentData("Document description is invalid");
+        }
         this.documentDescription = documentDescription;
     }
 
@@ -89,7 +110,11 @@ public class Document implements IDocumentAction {
         return documentAuthor;
     }
 
+    @Override
     public void setDocumentAuthor(String documentAuthor) {
+        if (documentAuthor.contains("2")) {
+            throw new InvalidDocumentData("Invalid Document Author");
+        }
         this.documentAuthor = documentAuthor;
     }
 

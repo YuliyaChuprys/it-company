@@ -56,4 +56,4 @@ public class Specialist extends Employee implements Educable {
         return result;
     }
 
-   }
+}

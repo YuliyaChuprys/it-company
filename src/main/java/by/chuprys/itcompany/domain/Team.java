@@ -1,16 +1,19 @@
 package main.java.by.chuprys.itcompany.domain;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Team {
 
     private int capacityPerMonth;
-    private Developer[] developers;
-    private QA[] qas;
+    private Set<Developer> developers;
+    private Set<QA> qas;
     private ProjectManager projectManager;
     private LocalDateTime projectEnd;
 
-    public Team(int capacityPerMonth, Developer[] developers, QA[] qas, ProjectManager projectManager) {
+    public Team(int capacityPerMonth, Set<Developer> developers, Set<QA> qas, ProjectManager projectManager) {
         this.capacityPerMonth = capacityPerMonth;
         this.developers = developers;
         this.qas = qas;
@@ -53,19 +56,19 @@ public class Team {
         this.capacityPerMonth = capacityPerMonth;
     }
 
-    public Developer[] getDevelopers() {
+    public Set<Developer> getDevelopers() {
         return developers;
     }
 
-    public void setDevelopers(Developer[] developers) {
+    public void setDevelopers(Set<Developer> developers) {
         this.developers = developers;
     }
 
-    public QA[] getQas() {
+    public Set<QA> getQas() {
         return qas;
     }
 
-    public void setQas(QA[] qas) {
+    public void setQas(Set<QA> qas) {
         this.qas = qas;
     }
 
@@ -78,8 +81,8 @@ public class Team {
     }
 
     public String getTeamInfo() {
-        return "Developers " + developers.length +
-                ", Testers " + qas.length +
+        return "Developers " + developers.size() +
+                ", Testers " + qas.size() +
                 ", Project Manager:" + projectManager.getFirstName() +
                 " " + projectManager.getSecondName();
     }
