@@ -1,12 +1,12 @@
-package main.java.by.chuprys.itcompany.service;
+package by.chuprys.itcompany.service;
 
-import main.java.by.chuprys.itcompany.domain.Developer;
-import main.java.by.chuprys.itcompany.domain.IDocumentAction;
-import main.java.by.chuprys.itcompany.domain.Project;
-import main.java.by.chuprys.itcompany.domain.ProjectOffer;
-import main.java.by.chuprys.itcompany.domain.QA;
-import main.java.by.chuprys.itcompany.domain.Requirement;
-import main.java.by.chuprys.itcompany.domain.Team;
+import by.chuprys.itcompany.domain.Developer;
+import by.chuprys.itcompany.domain.IDocumentAction;
+import by.chuprys.itcompany.domain.Project;
+import by.chuprys.itcompany.domain.ProjectOffer;
+import by.chuprys.itcompany.domain.QA;
+import by.chuprys.itcompany.domain.Requirement;
+import by.chuprys.itcompany.domain.Team;
 
 import java.math.BigDecimal;
 import java.util.List;

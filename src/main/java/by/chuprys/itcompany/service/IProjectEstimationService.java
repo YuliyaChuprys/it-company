@@ -1,9 +1,9 @@
-package main.java.by.chuprys.itcompany.service;
+package by.chuprys.itcompany.service;
 
-import main.java.by.chuprys.itcompany.domain.IDocumentAction;
-import main.java.by.chuprys.itcompany.domain.Project;
-import main.java.by.chuprys.itcompany.domain.ProjectOffer;
-import main.java.by.chuprys.itcompany.domain.Team;
+import by.chuprys.itcompany.domain.IDocumentAction;
+import by.chuprys.itcompany.domain.Project;
+import by.chuprys.itcompany.domain.ProjectOffer;
+import by.chuprys.itcompany.domain.Team;
 
 public interface IProjectEstimationService {
 

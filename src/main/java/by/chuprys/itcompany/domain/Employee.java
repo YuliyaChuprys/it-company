@@ -1,6 +1,6 @@
-package main.java.by.chuprys.itcompany.domain;
+package by.chuprys.itcompany.domain;
 
-import main.java.by.chuprys.itcompany.exeption.InvalidWorkExperienceMonth;
+import by.chuprys.itcompany.exeption.InvalidWorkExperienceMonth;
 
 import java.time.LocalDate;
 

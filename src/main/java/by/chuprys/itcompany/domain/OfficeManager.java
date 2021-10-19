@@ -1,4 +1,4 @@
-package main.java.by.chuprys.itcompany.domain;
+package by.chuprys.itcompany.domain;
 
 public class OfficeManager<C extends Cleaning, O extends OfficeManager> extends Worker<C, O> {
 

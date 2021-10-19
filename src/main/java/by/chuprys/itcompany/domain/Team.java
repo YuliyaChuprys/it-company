@@ -1,4 +1,4 @@
-package main.java.by.chuprys.itcompany.domain;
+package by.chuprys.itcompany.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;

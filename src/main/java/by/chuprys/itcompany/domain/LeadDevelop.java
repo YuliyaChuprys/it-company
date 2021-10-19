@@ -1,4 +1,4 @@
-package main.java.by.chuprys.itcompany.domain;
+package by.chuprys.itcompany.domain;
 
 public class LeadDevelop<PM extends ProjectManager, LD extends LeadDevelop, LQ extends LeadQa>
         extends Manager<PM, LD, LQ> {
