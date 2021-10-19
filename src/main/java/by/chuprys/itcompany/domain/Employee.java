@@ -31,7 +31,7 @@ public class Employee {
                 "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
-                ", isWork=" + work +
+                ", work=" + work +
                 ", passportData='" + passportData + '\'' +
                 ", dateOfBirthday=" + dateOfBirthday +
                 ", workExperienceMonth=" + workExperienceMonth +

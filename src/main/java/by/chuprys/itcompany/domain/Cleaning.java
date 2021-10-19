@@ -6,8 +6,8 @@ public class Cleaning<C extends Cleaning<?, ?>, O extends OfficeManager<?, ?>> e
     private String companyAddress;
     private int amountWorkDayPerWeek = 3;
 
-    public Cleaning(String id, String firstName, boolean isWork, boolean uniform) {
-        super(id, firstName, isWork, uniform);
+    public Cleaning(String id, String firstName, boolean work, boolean uniform) {
+        super(id, firstName, work, uniform);
     }
 
     @Override
