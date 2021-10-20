@@ -6,8 +6,8 @@ public class LeadDevelop<PM extends ProjectManager<?, ?, ?>, LD extends LeadDeve
     private String language;
     private boolean onProject;
 
-    public LeadDevelop(String id, String firstName, boolean isWork, String departmentName) {
-        super(id, firstName, isWork, departmentName);
+    public LeadDevelop(String id, String firstName, boolean work, String departmentName) {
+        super(id, firstName, work, departmentName);
     }
 
     @Override

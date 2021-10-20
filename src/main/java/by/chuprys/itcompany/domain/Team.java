@@ -8,10 +8,10 @@ public class Team {
     private int capacityPerMonth;
     private List<Developer> developers;
     private List<QA> qas;
-    private ProjectManager projectManager;
+    private ProjectManager<?, ?, ?> projectManager;
     private LocalDateTime projectEnd;
 
-    public Team(int capacityPerMonth, List<Developer> developers, List<QA> qas, ProjectManager projectManager) {
+    public Team(int capacityPerMonth, List<Developer> developers, List<QA> qas, ProjectManager<?, ?, ?> projectManager) {
         this.capacityPerMonth = capacityPerMonth;
         this.developers = developers;
         this.qas = qas;
@@ -70,11 +70,11 @@ public class Team {
         this.qas = qas;
     }
 
-    public ProjectManager getProjectManager() {
+    public ProjectManager<?,?,?> getProjectManager() {
         return projectManager;
     }
 
-    public void setProjectManager(ProjectManager projectManager) {
+    public void setProjectManager(ProjectManager<?,?,?> projectManager) {
         this.projectManager = projectManager;
     }
 

@@ -4,8 +4,8 @@ public class Specialist extends Employee implements Educable {
 
     private String departmentName;
 
-    public Specialist(String id, String firstName, boolean isWork, String departmentName) {
-        super(id, firstName, isWork);
+    public Specialist(String id, String firstName, boolean work, String departmentName) {
+        super(id, firstName, work);
         this.departmentName = departmentName;
     }
 

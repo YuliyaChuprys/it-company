@@ -6,8 +6,8 @@ public class LeadQa<PM extends ProjectManager<?, ?, ?>, LD extends LeadDevelop<?
     private boolean manual;
     private boolean onProject;
 
-    public LeadQa(String id, String firstName, boolean isWork, String departmentName) {
-        super(id, firstName, isWork, departmentName);
+    public LeadQa(String id, String firstName, boolean work, String departmentName) {
+        super(id, firstName, work, departmentName);
     }
 
     @Override

@@ -6,8 +6,8 @@ public class QA extends Specialist {
 
     private BigDecimal salaryPerMonth;
 
-    public QA(String id, String firstName, boolean isWork, BigDecimal salaryPerMonth) {
-        super(id, firstName, isWork, "QA department");
+    public QA(String id, String firstName, boolean work, BigDecimal salaryPerMonth) {
+        super(id, firstName, work, "QA department");
         this.salaryPerMonth = salaryPerMonth;
     }
 

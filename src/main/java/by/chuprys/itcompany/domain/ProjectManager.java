@@ -7,9 +7,9 @@ public class ProjectManager<PM extends ProjectManager<?, ?, ?>, LD extends LeadD
 
     private BigDecimal salaryPerMonth;
 
-    public ProjectManager(String id, String firstName, boolean isWork, String departmentName,
+    public ProjectManager(String id, String firstName, boolean work, String departmentName,
                           BigDecimal salaryPerMonth) {
-        super(id, firstName, isWork, departmentName);
+        super(id, firstName, work, departmentName);
         this.salaryPerMonth = salaryPerMonth;
     }
 

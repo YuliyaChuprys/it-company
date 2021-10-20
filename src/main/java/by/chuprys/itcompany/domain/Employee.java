@@ -9,16 +9,16 @@ public class Employee {
     private String id;
     private String firstName;
     private String secondName;
-    private boolean isWork;
+    private boolean work;
     private String passportData;
     private LocalDate dateOfBirthday;
     private int workExperienceMonth;
     private String rating;
 
-    public Employee(String id, String firstName, boolean isWork) {
+    public Employee(String id, String firstName, boolean work) {
         this.id = id;
         this.firstName = firstName;
-        this.isWork = isWork;
+        this.work = work;
     }
 
     public void sendWelcomeMessage() {
@@ -31,7 +31,7 @@ public class Employee {
                 "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
-                ", isWork=" + isWork +
+                ", isWork=" + work +
                 ", passportData='" + passportData + '\'' +
                 ", dateOfBirthday=" + dateOfBirthday +
                 ", workExperienceMonth=" + workExperienceMonth +
@@ -46,7 +46,7 @@ public class Employee {
 
         Employee employee = (Employee) o;
 
-        if (isWork != employee.isWork) return false;
+        if (work != employee.work) return false;
         if (workExperienceMonth != employee.workExperienceMonth) return false;
         if (id != null ? !id.equals(employee.id) : employee.id != null) return false;
         if (firstName != null ? !firstName.equals(employee.firstName) : employee.firstName != null) return false;
@@ -63,7 +63,7 @@ public class Employee {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (secondName != null ? secondName.hashCode() : 0);
-        result = 31 * result + (isWork ? 1 : 0);
+        result = 31 * result + (work ? 1 : 0);
         result = 31 * result + (passportData != null ? passportData.hashCode() : 0);
         result = 31 * result + (dateOfBirthday != null ? dateOfBirthday.hashCode() : 0);
         result = 31 * result + workExperienceMonth;
@@ -104,11 +104,11 @@ public class Employee {
     }
 
     public boolean isWork() {
-        return isWork;
+        return work;
     }
 
     public void setWork(boolean work) {
-        isWork = work;
+        this.work = work;
     }
 
     public String getPassportData() {

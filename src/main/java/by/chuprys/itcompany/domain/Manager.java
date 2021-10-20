@@ -13,8 +13,8 @@ public class Manager<PM, LD, LQ >
     private List<LD> leadDeveloper;
     private List<LQ> leadQa;
 
-    public Manager(String id, String firstName, boolean isWork, String departmentName) {
-        super(id, firstName, isWork);
+    public Manager(String id, String firstName, boolean work, String departmentName) {
+        super(id, firstName, work);
         this.departmentName = departmentName;
     }
 

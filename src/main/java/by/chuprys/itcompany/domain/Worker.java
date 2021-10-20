@@ -10,8 +10,8 @@ public class Worker<C extends Cleaning<?, ?>, O extends OfficeManager<?, ?>> ext
     private List<C> cleaning;
     private List<O> officeManager;
 
-    public Worker(String id, String firstName, boolean isWork, boolean uniform) {
-        super(id, firstName, isWork);
+    public Worker(String id, String firstName, boolean work, boolean uniform) {
+        super(id, firstName, work);
 
         this.uniform = uniform;
     }

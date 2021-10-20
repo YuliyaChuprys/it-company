@@ -7,7 +7,7 @@ public class Document implements IDocumentAction {
     private int documentId;
     private String documentTitle;
     private String documentDescription;
-    private boolean isInternal;
+    private boolean internal;
     private String documentAuthor;
 
     public Document(int documentId, String documentTitle) {
@@ -98,12 +98,12 @@ public class Document implements IDocumentAction {
         this.documentDescription = documentDescription;
     }
 
-    public boolean isInternal() {
-        return isInternal;
+    public boolean internal() {
+        return internal;
     }
 
     public void setInternal(boolean internal) {
-        isInternal = internal;
+        this.internal = internal;
     }
 
     public String getDocumentAuthor() {
