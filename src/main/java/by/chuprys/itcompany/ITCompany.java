@@ -167,7 +167,7 @@ public class ITCompany {
 
         ProjectManager<?, ?, ?> firstManager = new ProjectManager<>("pm01", "Peter", true,
                 "ProjectManager", new BigDecimal(3000));
-        firstManager.setSecondName("Mamonov");
+        firstManager.setSecondName("Momonov");
 
 
         return new Team(60, developers, qas, firstManager);
