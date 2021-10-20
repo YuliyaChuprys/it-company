@@ -1,7 +1,7 @@
 package by.chuprys.itcompany;
 
-import by.chuprys.itcompany.domain.Customer;
 import by.chuprys.itcompany.domain.IDocumentAction;
+import by.chuprys.itcompany.domain.Customer;
 import by.chuprys.itcompany.domain.LeadDevelop;
 import by.chuprys.itcompany.domain.LeadQa;
 import by.chuprys.itcompany.exeption.InvalidDocumentData;
