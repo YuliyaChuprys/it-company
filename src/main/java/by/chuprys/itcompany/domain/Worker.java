@@ -1,9 +1,9 @@
-package main.java.by.chuprys.itcompany.domain;
+package by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class Worker<C extends Cleaning, O extends OfficeManager> extends Employee {
+public class Worker<C extends Cleaning<C, O>, O extends OfficeManager<C, O>> extends Employee {
 
     private BigDecimal salary;
     private boolean uniform;
@@ -27,9 +27,12 @@ public class Worker<C extends Cleaning, O extends OfficeManager> extends Employe
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Worker worker = (Worker) o;
+        Worker<?, ?> worker = (Worker<?, ?>) o;
 
-        return uniform == worker.uniform;
+        if (uniform != worker.uniform) return false;
+        if (salary != null ? !salary.equals(worker.salary) : worker.salary != null) return false;
+        if (cleaning != null ? !cleaning.equals(worker.cleaning) : worker.cleaning != null) return false;
+        return officeManager != null ? officeManager.equals(worker.officeManager) : worker.officeManager == null;
     }
 
     @Override

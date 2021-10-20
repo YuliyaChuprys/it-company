@@ -1,4 +1,4 @@
-package main.java.by.chuprys.itcompany.exeption;
+package by.chuprys.itcompany.exeption;
 
 public class InvalidWorkExperienceMonth extends Exception {
 

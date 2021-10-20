@@ -1,6 +1,6 @@
-package main.java.by.chuprys.itcompany.domain;
+package by.chuprys.itcompany.domain;
 
-import main.java.by.chuprys.itcompany.exeption.InvalidDocumentData;
+import by.chuprys.itcompany.exeption.InvalidDocumentData;
 
 public class Document implements IDocumentAction {
 

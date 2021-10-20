@@ -1,4 +1,4 @@
-package main.java.by.chuprys.itcompany.domain;
+package by.chuprys.itcompany.domain;
 
 public class Project implements Comparable<Project> {
 
@@ -38,6 +38,6 @@ public class Project implements Comparable<Project> {
 
     @Override
     public int compareTo(Project o) {
-        return 0;
+        return this.projectName.compareTo(o.projectName);
     }
 }

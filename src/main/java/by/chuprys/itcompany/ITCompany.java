@@ -1,35 +1,34 @@
-package main.java.by.chuprys.itcompany;
+package by.chuprys.itcompany;
 
-import main.java.by.chuprys.itcompany.domain.Customer;
-import main.java.by.chuprys.itcompany.domain.IDocumentAction;
-import main.java.by.chuprys.itcompany.domain.LeadQa;
-import main.java.by.chuprys.itcompany.exeption.InvalidDocumentData;
-import main.java.by.chuprys.itcompany.exeption.InvalidWorkExperienceMonth;
-import main.java.by.chuprys.itcompany.domain.Resource;
-import main.java.by.chuprys.itcompany.service.EducationService;
-import main.java.by.chuprys.itcompany.service.EmployeeService;
-import main.java.by.chuprys.itcompany.domain.Developer;
-import main.java.by.chuprys.itcompany.domain.Document;
-import main.java.by.chuprys.itcompany.domain.Employee;
-import main.java.by.chuprys.itcompany.domain.Project;
-import main.java.by.chuprys.itcompany.domain.ProjectManager;
-import main.java.by.chuprys.itcompany.domain.ProjectOffer;
-import main.java.by.chuprys.itcompany.domain.QA;
-import main.java.by.chuprys.itcompany.domain.Requirement;
-import main.java.by.chuprys.itcompany.domain.Team;
-import main.java.by.chuprys.itcompany.service.IEducationService;
-import main.java.by.chuprys.itcompany.service.IEmployeeService;
-import main.java.by.chuprys.itcompany.service.IProjectEstimationService;
-import main.java.by.chuprys.itcompany.service.ProjectEstimationService;
+import by.chuprys.itcompany.domain.Customer;
+import by.chuprys.itcompany.domain.IDocumentAction;
+import by.chuprys.itcompany.domain.LeadDevelop;
+import by.chuprys.itcompany.domain.LeadQa;
+import by.chuprys.itcompany.exeption.InvalidDocumentData;
+import by.chuprys.itcompany.exeption.InvalidWorkExperienceMonth;
+import by.chuprys.itcompany.domain.Resource;
+import by.chuprys.itcompany.service.EducationService;
+import by.chuprys.itcompany.service.EmployeeService;
+import by.chuprys.itcompany.domain.Developer;
+import by.chuprys.itcompany.domain.Document;
+import by.chuprys.itcompany.domain.Employee;
+import by.chuprys.itcompany.domain.Project;
+import by.chuprys.itcompany.domain.ProjectManager;
+import by.chuprys.itcompany.domain.ProjectOffer;
+import by.chuprys.itcompany.domain.QA;
+import by.chuprys.itcompany.domain.Requirement;
+import by.chuprys.itcompany.domain.Team;
+import by.chuprys.itcompany.service.IEducationService;
+import by.chuprys.itcompany.service.IEmployeeService;
+import by.chuprys.itcompany.service.IProjectEstimationService;
+import by.chuprys.itcompany.service.ProjectEstimationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -54,10 +53,10 @@ public class ITCompany {
         /**
          * Create HashMap for Employees with key-value: id Employee, in Vocation - true, in Work - false
          **/
-        Map<String, Boolean> iDEmployeeIsInVocation = new HashMap();
-        iDEmployeeIsInVocation.put("d007", true);
-        iDEmployeeIsInVocation.put("qa005", true);
-        iDEmployeeIsInVocation.put("pm008", true);
+        Map<String, Boolean> iDEmployeeIsInVocations = new HashMap<>();
+        iDEmployeeIsInVocations.put("d007", true);
+        iDEmployeeIsInVocations.put("qa005", true);
+        iDEmployeeIsInVocations.put("pm008", true);
 
 
         Project project = new Project("NewProject", requirement, customer);
@@ -115,13 +114,14 @@ public class ITCompany {
         Employee firstEmployee = new Employee("E01", "First", false);
         Employee secondEmployee = new Employee("E02", "First", true);
 
-        List<Employee> employee = new ArrayList<>();
-        employee.add(firstEmployee);
-        employee.add(secondEmployee);
+        List<Employee> employees = new ArrayList<>();
+        employees.add(firstEmployee);
+        employees.add(secondEmployee);
 
-        LeadQa leadQa = new LeadQa("LQA01", "Iva", true, "Testing");
-        List<LeadQa> managers = new ArrayList<>();
-        managers.add(leadQa);
+        LeadQa<ProjectManager, LeadDevelop, LeadQa> leadQa = new LeadQa<>("LQA01", "Iva", true, "Testing");
+        List<?> managers = new ArrayList<>();
+        System.out.println(leadQa);
+
 
         try {
             firstEmployee.setWorkExperienceMonth(-2);
@@ -135,11 +135,11 @@ public class ITCompany {
         IEmployeeService employeeService = new EmployeeService(educationService);
         employeeService.getLevelOfEmployee(fourthQa);
 
-        System.out.println("Degree of employee " + fourthQa.getFirstName() + " " + fourthQa.getRating());
+        System.out.println("Degree of employees " + fourthQa.getFirstName() + " " + fourthQa.getRating());
 
         employeeService.sendToCourse(fourthQa);
 
-        System.out.println("Degree of employee after courses " + fourthQa.getFirstName() + " " + fourthQa.getRating());
+        System.out.println("Degree of employees after courses " + fourthQa.getFirstName() + " " + fourthQa.getRating());
 
         System.out.println(firstEmployee + ", " + secondEmployee);
         System.out.println("Employee First and Employee Second has the same name? " + firstEmployee.equals(secondEmployee));//equals
@@ -164,12 +164,10 @@ public class ITCompany {
         qas.add(firstQa);
         qas.add(secondQa);
 
-        ProjectManager firstManager = new ProjectManager("pm01", "Peter", true,
+        ProjectManager firstManager = new ProjectManager<>("pm01", "Peter", true,
                 "ProjectManager", new BigDecimal(3000));
         firstManager.setSecondName("Mamonov");
 
-        Set<ProjectManager> projectManagers = new HashSet<>();
-        projectManagers.add(firstManager);
 
         return new Team(60, developers, qas, firstManager);
     }

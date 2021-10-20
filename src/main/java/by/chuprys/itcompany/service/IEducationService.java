@@ -1,6 +1,6 @@
-package main.java.by.chuprys.itcompany.service;
+package by.chuprys.itcompany.service;
 
-import main.java.by.chuprys.itcompany.domain.Educable;
+import by.chuprys.itcompany.domain.Educable;
 
 public interface IEducationService {
     /**

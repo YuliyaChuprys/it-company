@@ -1,9 +1,9 @@
-package main.java.by.chuprys.itcompany.domain;
+package by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class Manager<PM extends ProjectManager, LD extends LeadDevelop, LQ extends LeadQa>
+public class Manager<PM, LD, LQ >
         extends Employee implements Educable {
 
     private String departmentName;
@@ -40,9 +40,18 @@ public class Manager<PM extends ProjectManager, LD extends LeadDevelop, LQ exten
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Manager manager = (Manager) o;
+        Manager<?, ?, ?> manager = (Manager<?, ?, ?>) o;
 
-        return departmentName.equals(manager.departmentName);
+        if (Float.compare(manager.salaryBonus, salaryBonus) != 0) return false;
+        if (departmentName != null ? !departmentName.equals(manager.departmentName) : manager.departmentName != null)
+            return false;
+        if (salaryPerMonth != null ? !salaryPerMonth.equals(manager.salaryPerMonth) : manager.salaryPerMonth != null)
+            return false;
+        if (projectManager != null ? !projectManager.equals(manager.projectManager) : manager.projectManager != null)
+            return false;
+        if (leadDeveloper != null ? !leadDeveloper.equals(manager.leadDeveloper) : manager.leadDeveloper != null)
+            return false;
+        return leadQa != null ? leadQa.equals(manager.leadQa) : manager.leadQa == null;
     }
 
     @Override

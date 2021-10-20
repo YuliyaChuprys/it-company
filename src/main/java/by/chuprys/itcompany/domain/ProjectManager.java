@@ -1,9 +1,9 @@
-package main.java.by.chuprys.itcompany.domain;
+package by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 
-public class ProjectManager<PM extends ProjectManager, LD extends LeadDevelop, LQ extends LeadQa>
-        extends Manager<PM, LD,LQ> {
+public class ProjectManager<PM extends ProjectManager<PM, LD, LQ>, LD extends LeadDevelop<PM, LD, LQ>,
+        LQ extends LeadQa <PM, LD, LQ>> extends Manager<PM, LD,LQ> {
 
     private BigDecimal salaryPerMonth;
 
@@ -19,9 +19,9 @@ public class ProjectManager<PM extends ProjectManager, LD extends LeadDevelop, L
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        ProjectManager that = (ProjectManager) o;
+        ProjectManager<?, ?, ?> that = (ProjectManager<?, ?, ?>) o;
 
-        return salaryPerMonth.equals(that.salaryPerMonth);
+        return salaryPerMonth != null ? salaryPerMonth.equals(that.salaryPerMonth) : that.salaryPerMonth == null;
     }
 
     @Override

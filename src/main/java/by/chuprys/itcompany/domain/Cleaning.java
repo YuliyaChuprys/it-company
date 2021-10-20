@@ -1,6 +1,6 @@
-package main.java.by.chuprys.itcompany.domain;
+package by.chuprys.itcompany.domain;
 
-public class Cleaning<C extends Cleaning, O extends OfficeManager> extends Worker<C, O> {
+public class Cleaning<C extends Cleaning<C, O>, O extends OfficeManager<C, O>> extends Worker<C, O> {
 
     private String companyName;
     private String companyAddress;
@@ -21,9 +21,12 @@ public class Cleaning<C extends Cleaning, O extends OfficeManager> extends Worke
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Cleaning cleaning = (Cleaning) o;
+        Cleaning<?, ?> cleaning = (Cleaning<?, ?>) o;
 
-        return companyAddress.equals(cleaning.companyAddress);
+        if (amountWorkDayPerWeek != cleaning.amountWorkDayPerWeek) return false;
+        if (companyName != null ? !companyName.equals(cleaning.companyName) : cleaning.companyName != null)
+            return false;
+        return companyAddress != null ? companyAddress.equals(cleaning.companyAddress) : cleaning.companyAddress == null;
     }
 
     @Override
