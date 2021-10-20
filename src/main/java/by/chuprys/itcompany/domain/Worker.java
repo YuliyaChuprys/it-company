@@ -3,7 +3,7 @@ package by.chuprys.itcompany.domain;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class Worker<C extends Cleaning<C, O>, O extends OfficeManager<C, O>> extends Employee {
+public class Worker<C extends Cleaning<?, ?>, O extends OfficeManager<?, ?>> extends Employee {
 
     private BigDecimal salary;
     private boolean uniform;

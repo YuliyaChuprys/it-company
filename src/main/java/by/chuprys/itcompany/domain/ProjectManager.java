@@ -2,8 +2,8 @@ package by.chuprys.itcompany.domain;
 
 import java.math.BigDecimal;
 
-public class ProjectManager<PM extends ProjectManager<PM, LD, LQ>, LD extends LeadDevelop<PM, LD, LQ>,
-        LQ extends LeadQa <PM, LD, LQ>> extends Manager<PM, LD,LQ> {
+public class ProjectManager<PM extends ProjectManager<?, ?, ?>, LD extends LeadDevelop<?, ?, ?>,
+        LQ extends LeadQa <?, ?, ?>> extends Manager<PM, LD,LQ> {
 
     private BigDecimal salaryPerMonth;
 

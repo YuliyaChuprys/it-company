@@ -118,7 +118,8 @@ public class ITCompany {
         employees.add(firstEmployee);
         employees.add(secondEmployee);
 
-        LeadQa<ProjectManager, LeadDevelop, LeadQa> leadQa = new LeadQa<>("LQA01", "Iva", true, "Testing");
+        LeadQa<ProjectManager<?, ?, ?>, LeadDevelop<?, ?, ?>, LeadQa<?, ?, ?>> leadQa =
+                new LeadQa<>("LQA01", "Iva", true, "Testing");
         List<?> managers = new ArrayList<>();
         System.out.println(leadQa);
 
@@ -164,7 +165,7 @@ public class ITCompany {
         qas.add(firstQa);
         qas.add(secondQa);
 
-        ProjectManager firstManager = new ProjectManager<>("pm01", "Peter", true,
+        ProjectManager<?, ?, ?> firstManager = new ProjectManager<>("pm01", "Peter", true,
                 "ProjectManager", new BigDecimal(3000));
         firstManager.setSecondName("Mamonov");
 

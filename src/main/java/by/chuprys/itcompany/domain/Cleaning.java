@@ -1,6 +1,6 @@
 package by.chuprys.itcompany.domain;
 
-public class Cleaning<C extends Cleaning<C, O>, O extends OfficeManager<C, O>> extends Worker<C, O> {
+public class Cleaning<C extends Cleaning<?, ?>, O extends OfficeManager<?, ?>> extends Worker<C, O> {
 
     private String companyName;
     private String companyAddress;

@@ -1,10 +1,10 @@
 package by.chuprys.itcompany.domain;
 
-public class LeadDevelop<PM extends ProjectManager, LD extends LeadDevelop, LQ extends LeadQa>
+public class LeadDevelop<PM extends ProjectManager<?, ?, ?>, LD extends LeadDevelop<?, ?, ?>, LQ extends LeadQa<?, ?, ?>>
         extends Manager<PM, LD, LQ> {
 
     private String language;
-    private boolean isOnProject;
+    private boolean onProject;
 
     public LeadDevelop(String id, String firstName, boolean isWork, String departmentName) {
         super(id, firstName, isWork, departmentName);
@@ -21,9 +21,10 @@ public class LeadDevelop<PM extends ProjectManager, LD extends LeadDevelop, LQ e
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        LeadDevelop that = (LeadDevelop) o;
+        LeadDevelop<?, ?, ?> that = (LeadDevelop<?, ?, ?>) o;
 
-        return language.equals(that.language);
+        if (onProject != that.onProject) return false;
+        return language != null ? language.equals(that.language) : that.language == null;
     }
 
     @Override
@@ -42,11 +43,11 @@ public class LeadDevelop<PM extends ProjectManager, LD extends LeadDevelop, LQ e
     }
 
     public boolean isOnProject() {
-        return isOnProject;
+        return onProject;
     }
 
     public void setOnProject(boolean onProject) {
-        isOnProject = onProject;
+        this.onProject = onProject;
     }
 
 }
