@@ -71,8 +71,6 @@ public class ITCompany {
         } catch (InvalidDocumentData e) {
             LOGGER.debug("Document Description is invalid. " + e.getMessage());
             LOGGER.debug("Invalid document Author");
-        } finally {
-            LOGGER.debug("After operation");
         }
 
         try (Resource resource = new Resource()) {
