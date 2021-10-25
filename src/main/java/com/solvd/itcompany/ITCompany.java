@@ -89,13 +89,13 @@ public class ITCompany {
                 System.out.println("Project is on stage " + stageProject);
                 break;
             case DEVELOPING:
-                System.out.println("Project is on stage "+ stageProject);
+                System.out.println("Stage of project is "+ stageProject);
                 break;
             case TESTING:
-                System.out.println("Project is on stage " + stageProject);
+                System.out.println("Project is in " + stageProject);
                 break;
             case CLOSE:
-                System.out.println("Project is on stage " + stageProject);
+                System.out.println("Project is on last stage: " + stageProject);
         }
 
         System.out.println("Project price($) =" + projectOffer.getPrice() + ", Time to do(month) =" +
