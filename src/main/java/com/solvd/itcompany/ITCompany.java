@@ -48,7 +48,6 @@ public class ITCompany {
                 LocalDate.parse("2022-10-01"));
         Project project = new Project("NewProject", requirement, customer);
 
-
         /**
          * Create HashMap for Employees with key-value: id Employee, in Vocation - true, in Work - false
          **/
@@ -85,6 +84,21 @@ public class ITCompany {
         IProjectEstimationService projectEstimationService = new ProjectEstimationService();
         ProjectOffer projectOffer = projectEstimationService.estimateProject(document, project, team, 2F);
 
+        StageProject stageProject = StageProject.PLANNING;
+        switch (stageProject){
+            case PLANNING:
+                System.out.println("Project is on stage " + stageProject);
+                break;
+            case DEVELOPING:
+                System.out.println("Stage of project is "+ stageProject);
+                break;
+            case TESTING:
+                System.out.println("Project is in " + stageProject);
+                break;
+            case CLOSE:
+                System.out.println("Project is on last stage: " + stageProject);
+        }
+
         System.out.println("Project price($) =" + projectOffer.getPrice() + ", Time to do(month) =" +
                 projectOffer.getExecutionTime() + ", " + projectOffer.getTeam().getTeamInfo());
 
@@ -93,6 +107,7 @@ public class ITCompany {
 
         QA thirdQa = new QA("t03", "Vincent", true, new BigDecimal(300));
         QA fourthQa = new QA("t033", "David", true, new BigDecimal(500));
+
         try {
             fourthQa.setWorkExperienceMonth(5);
         } catch (InvalidWorkExperienceMonth e) {
@@ -168,5 +183,8 @@ public class ITCompany {
 
         return new Team(60, developers, qas, firstManager);
     }
+
+    public  enum StageProject { PLANNING, DEVELOPING, TESTING, MAINTAINING, CLOSE }
+    StageProject stageProject = StageProject.PLANNING;
 
 }
