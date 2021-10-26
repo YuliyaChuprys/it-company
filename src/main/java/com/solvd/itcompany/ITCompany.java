@@ -4,6 +4,7 @@ import com.solvd.itcompany.domain.LeadDevelop;
 import com.solvd.itcompany.domain.IDocumentAction;
 import com.solvd.itcompany.domain.Customer;
 import com.solvd.itcompany.domain.LeadQa;
+import com.solvd.itcompany.domain.OfficeManager;
 import com.solvd.itcompany.exeption.InvalidDocumentData;
 import com.solvd.itcompany.exeption.InvalidWorkExperienceMonth;
 import com.solvd.itcompany.domain.Resource;
@@ -137,6 +138,9 @@ public class ITCompany {
 
         System.out.println(firstEmployee + ", " + secondEmployee);
         System.out.println("Employee First and Employee Second has the same name? " + firstEmployee.equals(secondEmployee));//equals
+
+        OfficeManager<?,?> firstOM = new OfficeManager<>("om01", "Mary", true, true);
+        firstOM.generalClean();
 
     }
 
