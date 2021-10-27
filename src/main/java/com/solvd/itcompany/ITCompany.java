@@ -4,6 +4,7 @@ import com.solvd.itcompany.domain.IDocumentAction;
 import com.solvd.itcompany.domain.Customer;
 import com.solvd.itcompany.domain.LeadDevelop;
 import com.solvd.itcompany.domain.LeadQa;
+import com.solvd.itcompany.domain.Singleton;
 import com.solvd.itcompany.exeption.InvalidDocumentData;
 import com.solvd.itcompany.exeption.InvalidWorkExperienceMonth;
 import com.solvd.itcompany.domain.Resource;
@@ -153,6 +154,9 @@ public class ITCompany {
         System.out.println(firstEmployee + ", " + secondEmployee);
         System.out.println("Employee First and Employee Second has the same name? " + firstEmployee.equals(secondEmployee));//equals
 
+        Singleton director = Singleton.getDirector();
+        System.out.println(director);
+
     }
 
     public static Team initializeData() {
@@ -178,9 +182,9 @@ public class ITCompany {
         firstManager.setSecondName("Momonov");
 
         return new Team(60, developers, qas, firstManager);
+
     }
 
-    public  enum StageProject { PLANNING, DEVELOPING, TESTING, MAINTAINING, CLOSE }
-    StageProject stageProject = StageProject.PLANNING;
+    public  enum StageProject { PLANNING, DEVELOPING, TESTING, CLOSE }
 
 }
