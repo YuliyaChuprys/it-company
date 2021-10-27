@@ -1,9 +1,12 @@
 package com.solvd.itcompany;
 
+import com.solvd.itcompany.domain.Cleaning;
+import com.solvd.itcompany.domain.DayWeek;
 import com.solvd.itcompany.domain.IDocumentAction;
 import com.solvd.itcompany.domain.Customer;
 import com.solvd.itcompany.domain.LeadDevelop;
 import com.solvd.itcompany.domain.LeadQa;
+import com.solvd.itcompany.domain.OfficeManager;
 import com.solvd.itcompany.domain.Singleton;
 import com.solvd.itcompany.exeption.InvalidDocumentData;
 import com.solvd.itcompany.exeption.InvalidWorkExperienceMonth;
@@ -156,6 +159,12 @@ public class ITCompany {
 
         Singleton director = Singleton.getDirector();
         System.out.println(director);
+        OfficeManager<?,?> officeManager = new OfficeManager<>("om001","Ann", true, true);
+        Cleaning<?,?> cleaning = new Cleaning<>("c001", "Any", true, true);
+        officeManager.setDayWeek(DayWeek.FRI);
+        officeManager.treatСolleagues();
+        cleaning.setDayWeek(DayWeek.FRI);
+        cleaning.generalClean();
 
     }
 
