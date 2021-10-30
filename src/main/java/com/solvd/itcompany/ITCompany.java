@@ -1,48 +1,58 @@
 package com.solvd.itcompany;
 
 import com.solvd.itcompany.domain.Cleaning;
-import com.solvd.itcompany.domain.DayWeek;
-import com.solvd.itcompany.domain.IDocumentAction;
 import com.solvd.itcompany.domain.Customer;
-import com.solvd.itcompany.domain.LeadDevelop;
-import com.solvd.itcompany.domain.LeadQa;
-import com.solvd.itcompany.domain.OfficeManager;
-import com.solvd.itcompany.domain.Singleton;
-import com.solvd.itcompany.exeption.InvalidDocumentData;
-import com.solvd.itcompany.exeption.InvalidWorkExperienceMonth;
-import com.solvd.itcompany.domain.Resource;
-import com.solvd.itcompany.service.EducationService;
-import com.solvd.itcompany.service.EmployeeService;
+import com.solvd.itcompany.domain.DayWeek;
 import com.solvd.itcompany.domain.Developer;
 import com.solvd.itcompany.domain.Document;
 import com.solvd.itcompany.domain.Employee;
+import com.solvd.itcompany.domain.IDocumentAction;
+import com.solvd.itcompany.domain.LeadDevelop;
+import com.solvd.itcompany.domain.LeadQa;
+import com.solvd.itcompany.domain.OfficeManager;
 import com.solvd.itcompany.domain.Project;
 import com.solvd.itcompany.domain.ProjectManager;
 import com.solvd.itcompany.domain.ProjectOffer;
 import com.solvd.itcompany.domain.QA;
 import com.solvd.itcompany.domain.Requirement;
+import com.solvd.itcompany.domain.Resource;
+import com.solvd.itcompany.domain.Singleton;
 import com.solvd.itcompany.domain.Team;
+import com.solvd.itcompany.exeption.InvalidDocumentData;
+import com.solvd.itcompany.exeption.InvalidWorkExperienceMonth;
+import com.solvd.itcompany.service.EducationService;
+import com.solvd.itcompany.service.EmployeeService;
+import com.solvd.itcompany.service.FileService;
 import com.solvd.itcompany.service.IEducationService;
 import com.solvd.itcompany.service.IEmployeeService;
 import com.solvd.itcompany.service.IProjectEstimationService;
 import com.solvd.itcompany.service.ProjectEstimationService;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
+
+import static org.apache.commons.lang3.CharEncoding.UTF_8;
 
 public class ITCompany {
 
     private static final Logger LOGGER = LogManager.getLogger(ITCompany.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 
         Customer customer = new Customer("Grape", "+375291112233", "BigBoss",
@@ -88,12 +98,12 @@ public class ITCompany {
         ProjectOffer projectOffer = projectEstimationService.estimateProject(document, project, team, 2F);
 
         StageProject stageProject = StageProject.PLANNING;
-        switch (stageProject){
+        switch (stageProject) {
             case PLANNING:
                 System.out.println("Project is on stage " + stageProject);
                 break;
             case DEVELOPING:
-                System.out.println("Stage of project is "+ stageProject);
+                System.out.println("Stage of project is " + stageProject);
                 break;
             case TESTING:
                 System.out.println("Project is in " + stageProject);
@@ -159,12 +169,18 @@ public class ITCompany {
 
         Singleton director = Singleton.getDirector();
         System.out.println(director);
-        OfficeManager<?,?> officeManager = new OfficeManager<>("om001","Ann", true, true);
-        Cleaning<?,?> cleaning = new Cleaning<>("c001", "Any", true, true);
+        OfficeManager<?, ?> officeManager = new OfficeManager<>("om001", "Ann", true, true);
+        Cleaning<?, ?> cleaning = new Cleaning<>("c001", "Any", true, true);
         officeManager.setDayWeek(DayWeek.FRI);
         officeManager.treatСolleagues();
         cleaning.setDayWeek(DayWeek.FRI);
         cleaning.generalClean();
+
+        FileService fileService = new FileService();
+        List<String> doc = fileService.readFile("C:\\Users\\Professional\\IdeaProjects\\it-company\\file.txt");
+        HashMap<String, Integer> fileMap = fileService.countWord(doc);
+        StringBuilder result = fileService.sortBy(fileMap);
+        fileService.writeToFile(result, "src\\main\\resources\\SortedText.txt");
 
     }
 
@@ -194,6 +210,6 @@ public class ITCompany {
 
     }
 
-    public  enum StageProject { PLANNING, DEVELOPING, TESTING, CLOSE }
+    public enum StageProject {PLANNING, DEVELOPING, TESTING, CLOSE}
 
 }

@@ -20,6 +20,9 @@ public class OfficeManager<C extends Cleaning<?, ?>, O extends OfficeManager<?, 
         if (this.getDayWeek() == DayWeek.FRI) {
             System.out.println("We invite you to the kitchen!");
         }
+        else {
+            System.out.println("Keep calm, Work hard!");
+        }
     }
 
     @Override
