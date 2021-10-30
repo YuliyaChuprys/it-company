@@ -27,33 +27,24 @@ import com.solvd.itcompany.service.IEducationService;
 import com.solvd.itcompany.service.IEmployeeService;
 import com.solvd.itcompany.service.IProjectEstimationService;
 import com.solvd.itcompany.service.ProjectEstimationService;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
-
-import static org.apache.commons.lang3.CharEncoding.UTF_8;
 
 public class ITCompany {
 
     private static final Logger LOGGER = LogManager.getLogger(ITCompany.class);
 
     public static void main(String[] args) throws IOException {
-
 
         Customer customer = new Customer("Grape", "+375291112233", "BigBoss",
                 "email@mail.ru");
