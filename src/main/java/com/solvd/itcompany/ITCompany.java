@@ -1,5 +1,6 @@
 package com.solvd.itcompany;
 
+import com.solvd.itcompany.domain.ArrivalDepartureJournal;
 import com.solvd.itcompany.domain.Cleaning;
 import com.solvd.itcompany.domain.Customer;
 import com.solvd.itcompany.domain.DayWeek;
@@ -16,7 +17,6 @@ import com.solvd.itcompany.domain.ProjectOffer;
 import com.solvd.itcompany.domain.QA;
 import com.solvd.itcompany.domain.Requirement;
 import com.solvd.itcompany.domain.Resource;
-import com.solvd.itcompany.domain.Singleton;
 import com.solvd.itcompany.domain.Team;
 import com.solvd.itcompany.exeption.InvalidDocumentData;
 import com.solvd.itcompany.exeption.InvalidWorkExperienceMonth;
@@ -158,8 +158,12 @@ public class ITCompany {
         System.out.println(firstEmployee + ", " + secondEmployee);
         System.out.println("Employee First and Employee Second has the same name? " + firstEmployee.equals(secondEmployee));//equals
 
-        Singleton director = Singleton.getDirector();
-        System.out.println(director);
+        ArrivalDepartureJournal.getArrivalDepartureJournal().addJournalInfo("First Employee arrived");
+        ArrivalDepartureJournal.getArrivalDepartureJournal().addJournalInfo("Second Employee arrived");
+        ArrivalDepartureJournal.getArrivalDepartureJournal().addJournalInfo("Third Employee arrived");
+
+        ArrivalDepartureJournal.getArrivalDepartureJournal().showJournalInfo();
+
         OfficeManager<?, ?> officeManager = new OfficeManager<>("om001", "Ann", true, true);
         Cleaning<?, ?> cleaning = new Cleaning<>("c001", "Any", true, true);
         officeManager.setDayWeek(DayWeek.FRI);
@@ -201,6 +205,8 @@ public class ITCompany {
 
     }
 
-    public enum StageProject {PLANNING, DEVELOPING, TESTING, CLOSE}
+    public enum StageProject {
+        PLANNING, DEVELOPING, TESTING, CLOSE
+    }
 
 }
