@@ -31,26 +31,34 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class ITCompany {
 
     private static final Logger LOGGER = LogManager.getLogger(ITCompany.class);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InvocationTargetException {
 
         Customer customer = new Customer("Grape", "+375291112233", "BigBoss",
                 "email@mail.ru");
         Requirement requirement = new Requirement(20221001, "Create new cool project", 8,
                 LocalDate.parse("2022-10-01"));
         Project project = new Project("NewProject", requirement, customer);
+
+        Runnable lambda = () -> System.out.println("Lambda use");
+        lambda.run();
 
         /**
          * Create HashMap for Employees with key-value: id Employee, in Vocation - true, in Work - false
@@ -111,6 +119,7 @@ public class ITCompany {
 
         QA thirdQa = new QA("t03", "Vincent", true, new BigDecimal(300));
         QA fourthQa = new QA("t033", "David", true, new BigDecimal(500));
+        QA sixthQa = new QA("t044", "Joe", false, new BigDecimal(200));
 
         try {
             fourthQa.setWorkExperienceMonth(5);
@@ -124,12 +133,53 @@ public class ITCompany {
         System.out.println(fourthQa);
         System.out.println("Tester 3 и tester 4 has the same idCard? " + thirdQa.equals(fourthQa));
 
+        List<QA> qas = new ArrayList<>();
+        qas.add(thirdQa);
+        qas.add(fourthQa);
+        qas.add(sixthQa);
+
         Employee firstEmployee = new Employee("E01", "First", false);
-        Employee secondEmployee = new Employee("E02", "First", true);
+        try {
+            firstEmployee.setWorkExperienceMonth(10);
+        } catch (InvalidWorkExperienceMonth e) {
+            e.printStackTrace();
+        }
+        Employee secondEmployee = new Employee("E02", "Second", true);
+        Employee thirdEmployee = new Employee("E03", "Third", true);
+        Employee forthEmployee = new Employee("E04", "Forth", false);
 
         List<Employee> employees = new ArrayList<>();
         employees.add(firstEmployee);
         employees.add(secondEmployee);
+        employees.add(thirdEmployee);
+        employees.add(forthEmployee);
+
+        /**
+         * Create Streaming
+         */
+        employees.stream()
+                .map(Employee::getFirstName)
+                .filter(firstName -> firstName.startsWith("F"))
+                .peek(e -> System.out.println("Filtered value: " + e))
+                .map(String::toUpperCase)
+                .peek(e -> System.out.println("Mapped value: " + e))
+                .collect(Collectors.toList());
+
+        Arrays.asList(qas, employees).stream()
+                .flatMap(list -> list.stream())
+                .forEach(System.out::println);
+
+        Optional<QA> firstQaInList = qas.stream().findFirst();
+        System.out.println(firstQaInList);
+
+        QA lastQa = qas.stream().skip(qas.size() - 1).findAny().orElse(null);
+        System.out.println(lastQa);
+
+        Integer maxWorkExp = employees.stream()
+                .map(Employee::getWorkExperienceMonth)
+                .max(Integer::compare)
+                .orElseThrow(IllegalStateException::new);
+        System.out.println("Max Work of Experience: " + maxWorkExp);
 
         LeadQa<ProjectManager<?, ?, ?>, LeadDevelop<?, ?, ?>, LeadQa<?, ?, ?>> leadQa =
                 new LeadQa<>("LQA01", "Iva", true, "Testing");
@@ -177,6 +227,24 @@ public class ITCompany {
         StringBuilder result = fileService.sortBy(fileMap);
         fileService.writeToFile(result, "src\\main\\resources\\SortedText.txt");
 
+        /**
+         * Reflection with Requirement Class
+         * Create object secondRequirement, initialize, check methods
+         */
+
+        Requirement secondRequirement = null;
+        try {
+            Class<?> reqClass = Class.forName(Requirement.class.getName());
+            Class<?>[] params = {int.class, String.class, int.class, LocalDate.class};
+            secondRequirement = (Requirement) reqClass.getConstructor(params).newInstance(02, "Second project", 15,
+                    LocalDate.parse("2023-01-01"));
+            Method getFeatures = secondRequirement.getClass().getDeclaredMethod("getFeatures");
+            Method getStartProject = secondRequirement.getClass().getDeclaredMethod("getStartProjectDate1"); //mistake in name
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        System.out.println(secondRequirement);
+
     }
 
     public static Team initializeData() {
@@ -208,5 +276,6 @@ public class ITCompany {
     public enum StageProject {
         PLANNING, DEVELOPING, TESTING, CLOSE
     }
+
 
 }

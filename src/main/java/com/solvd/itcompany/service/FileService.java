@@ -26,7 +26,7 @@ public class FileService {
 
     public HashMap<String, Integer> countWord(List<String> doc) {
         HashMap<String, Integer> fileMap = new HashMap<>();
-        for (String word : doc) {
+                for (String word : doc) {
             if (fileMap.containsKey(word)) {
                 fileMap.put(word, fileMap.get(word) + 1);
             } else {
@@ -39,18 +39,9 @@ public class FileService {
     public StringBuilder sortBy(HashMap<String, Integer> fileMap) {
 
         Map<Integer, String> sortedMap = new TreeMap<>(Collections.reverseOrder());
-//        fileMap.forEach((k, v) -> sortedMap.put(v, k));
-//        sortedMap.forEach((k, v) -> System.out.print(k + "=" + v + ", "));
-        for (Map.Entry<String, Integer> entry : fileMap.entrySet()) {
-            sortedMap.put(entry.getValue(), entry.getKey());
-        }
+        fileMap.forEach((k, v) -> sortedMap.put(v, k));
         StringBuilder result = new StringBuilder();
-        for (Map.Entry<Integer, String> entry : sortedMap.entrySet()) {
-            result.append(entry.getKey());
-            result.append("=");
-            result.append(entry.getValue());
-            result.append(", ");
-        }
+        sortedMap.forEach((k, v) -> System.out.print(k + "=" + v + ", "));
         return result;
     }
 
@@ -58,7 +49,6 @@ public class FileService {
 
         System.out.println(result);
         FileUtils.writeStringToFile(new File("src\\main\\resources\\SortedText.txt"), result.toString());
-
 
     }
 }
