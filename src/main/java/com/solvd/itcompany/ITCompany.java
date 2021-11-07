@@ -1,5 +1,6 @@
 package com.solvd.itcompany;
 
+<<<<<<< HEAD
 import com.solvd.itcompany.domain.LeadDevelop;
 import com.solvd.itcompany.domain.IDocumentAction;
 import com.solvd.itcompany.domain.Customer;
@@ -10,15 +11,31 @@ import com.solvd.itcompany.exeption.InvalidWorkExperienceMonth;
 import com.solvd.itcompany.domain.Resource;
 import com.solvd.itcompany.service.EducationService;
 import com.solvd.itcompany.service.EmployeeService;
+=======
+import com.solvd.itcompany.domain.ArrivalDepartureJournal;
+import com.solvd.itcompany.domain.Cleaning;
+import com.solvd.itcompany.domain.Customer;
+import com.solvd.itcompany.domain.DayWeek;
+>>>>>>> lambda-streaming
 import com.solvd.itcompany.domain.Developer;
 import com.solvd.itcompany.domain.Document;
 import com.solvd.itcompany.domain.Employee;
+import com.solvd.itcompany.domain.IDocumentAction;
+import com.solvd.itcompany.domain.LeadDevelop;
+import com.solvd.itcompany.domain.LeadQa;
+import com.solvd.itcompany.domain.OfficeManager;
 import com.solvd.itcompany.domain.Project;
 import com.solvd.itcompany.domain.ProjectManager;
 import com.solvd.itcompany.domain.ProjectOffer;
 import com.solvd.itcompany.domain.QA;
 import com.solvd.itcompany.domain.Requirement;
+import com.solvd.itcompany.domain.Resource;
 import com.solvd.itcompany.domain.Team;
+import com.solvd.itcompany.exeption.InvalidDocumentData;
+import com.solvd.itcompany.exeption.InvalidWorkExperienceMonth;
+import com.solvd.itcompany.service.EducationService;
+import com.solvd.itcompany.service.EmployeeService;
+import com.solvd.itcompany.service.FileService;
 import com.solvd.itcompany.service.IEducationService;
 import com.solvd.itcompany.service.IEmployeeService;
 import com.solvd.itcompany.service.IProjectEstimationService;
@@ -26,27 +43,35 @@ import com.solvd.itcompany.service.ProjectEstimationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class ITCompany {
 
     private static final Logger LOGGER = LogManager.getLogger(ITCompany.class);
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException, InvocationTargetException {
 
         Customer customer = new Customer("Grape", "+375291112233", "BigBoss",
                 "email@mail.ru");
         Requirement requirement = new Requirement(20221001, "Create new cool project", 8,
                 LocalDate.parse("2022-10-01"));
         Project project = new Project("NewProject", requirement, customer);
+
+        Runnable lambda = () -> System.out.println("Work with file is done.");
+       // lambda.run();
 
         /**
          * Create HashMap for Employees with key-value: id Employee, in Vocation - true, in Work - false
@@ -85,12 +110,12 @@ public class ITCompany {
         ProjectOffer projectOffer = projectEstimationService.estimateProject(document, project, team, 2F);
 
         StageProject stageProject = StageProject.PLANNING;
-        switch (stageProject){
+        switch (stageProject) {
             case PLANNING:
                 System.out.println("Project is on stage " + stageProject);
                 break;
             case DEVELOPING:
-                System.out.println("Stage of project is "+ stageProject);
+                System.out.println("Stage of project is " + stageProject);
                 break;
             case TESTING:
                 System.out.println("Project is in " + stageProject);
@@ -107,6 +132,7 @@ public class ITCompany {
 
         QA thirdQa = new QA("t03", "Vincent", true, new BigDecimal(300));
         QA fourthQa = new QA("t033", "David", true, new BigDecimal(500));
+        QA sixthQa = new QA("t044", "Joe", false, new BigDecimal(200));
 
         try {
             fourthQa.setWorkExperienceMonth(5);
@@ -120,12 +146,55 @@ public class ITCompany {
         System.out.println(fourthQa);
         System.out.println("Tester 3 и tester 4 has the same idCard? " + thirdQa.equals(fourthQa));
 
+        List<QA> qas = new ArrayList<>();
+        qas.add(thirdQa);
+        qas.add(fourthQa);
+        qas.add(sixthQa);
+
         Employee firstEmployee = new Employee("E01", "First", false);
-        Employee secondEmployee = new Employee("E02", "First", true);
+        try {
+            firstEmployee.setWorkExperienceMonth(10);
+        } catch (InvalidWorkExperienceMonth e) {
+            e.printStackTrace();
+        }
+        Employee secondEmployee = new Employee("E02", "Second", true);
+        Employee thirdEmployee = new Employee("E03", "Third", true);
+        Employee forthEmployee = new Employee("E04", "Forth", false);
 
         List<Employee> employees = new ArrayList<>();
         employees.add(firstEmployee);
         employees.add(secondEmployee);
+        employees.add(thirdEmployee);
+        employees.add(forthEmployee);
+
+        /**
+         * Create Streaming
+         */
+
+        List<String> sortedNames = employees.stream()
+                .map(Employee::getFirstName)
+                .filter(firstName -> firstName.startsWith("F"))
+                .peek(e -> System.out.println("Filtered value: " + e))
+                .map(String::toUpperCase)
+                .peek(e -> System.out.println("Mapped value: " + e))
+                .collect(Collectors.toList());
+
+
+        Arrays.asList(qas, employees).stream()
+                .flatMap(list -> list.stream())
+                .forEach(System.out::println);
+
+        Optional<QA> firstQaInList = qas.stream().findFirst();
+        System.out.println(firstQaInList);
+
+        QA lastQa = qas.stream().skip(qas.size() - 1).findAny().orElse(null);
+        System.out.println(lastQa);
+
+        Integer maxWorkExp = employees.stream()
+                .map(Employee::getWorkExperienceMonth)
+                .max(Integer::compare)
+                .orElseThrow(IllegalStateException::new);
+        System.out.println("Max Work of Experience: " + maxWorkExp);
 
         LeadQa<ProjectManager<?, ?, ?>, LeadDevelop<?, ?, ?>, LeadQa<?, ?, ?>> leadQa =
                 new LeadQa<>("LQA01", "Iva", true, "Testing");
@@ -154,8 +223,47 @@ public class ITCompany {
         System.out.println(firstEmployee + ", " + secondEmployee);
         System.out.println("Employee First and Employee Second has the same name? " + firstEmployee.equals(secondEmployee));//equals
 
+<<<<<<< HEAD
         OfficeManager<?,?> firstOM = new OfficeManager<>("om01", "Mary", true, true);
         firstOM.generalClean();
+=======
+        ArrivalDepartureJournal.getArrivalDepartureJournal().addJournalInfo("First Employee arrived");
+        ArrivalDepartureJournal.getArrivalDepartureJournal().addJournalInfo("Second Employee arrived");
+        ArrivalDepartureJournal.getArrivalDepartureJournal().addJournalInfo("Third Employee arrived");
+
+        ArrivalDepartureJournal.getArrivalDepartureJournal().showJournalInfo();
+
+        OfficeManager<?, ?> officeManager = new OfficeManager<>("om001", "Ann", true, true);
+        Cleaning<?, ?> cleaning = new Cleaning<>("c001", "Any", true, true);
+        officeManager.setDayWeek(DayWeek.FRI);
+        officeManager.treatСolleagues();
+        cleaning.setDayWeek(DayWeek.FRI);
+        cleaning.generalClean();
+
+        FileService fileService = new FileService();
+        List<String> doc = fileService.readFile("C:\\Users\\Professional\\IdeaProjects\\it-company\\file.txt");
+        HashMap<String, Integer> fileMap = fileService.countWord(doc);
+        StringBuilder result = fileService.sortBy(fileMap);
+        fileService.writeToFile(result, "src\\main\\resources\\SortedText.txt", lambda);
+
+        /**
+         * Reflection with Requirement Class
+         * Create object secondRequirement, initialize, check methods
+         */
+
+        Requirement secondRequirement = null;
+        try {
+            Class<?> reqClass = Class.forName(Requirement.class.getName());
+            Class<?>[] params = {int.class, String.class, int.class, LocalDate.class};
+            secondRequirement = (Requirement) reqClass.getConstructor(params).newInstance(02, "Second project", 15,
+                    LocalDate.parse("2023-01-01"));
+            Method getFeatures = secondRequirement.getClass().getDeclaredMethod("getFeatures");
+            Method getStartProject = secondRequirement.getClass().getDeclaredMethod("getStartProjectDate1"); //mistake in name
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        System.out.println(secondRequirement);
+>>>>>>> lambda-streaming
 
     }
 
@@ -182,9 +290,12 @@ public class ITCompany {
         firstManager.setSecondName("Momonov");
 
         return new Team(60, developers, qas, firstManager);
+
     }
 
-    public  enum StageProject { PLANNING, DEVELOPING, TESTING, MAINTAINING, CLOSE }
-    StageProject stageProject = StageProject.PLANNING;
+    public enum StageProject {
+        PLANNING, DEVELOPING, TESTING, CLOSE
+    }
+
 
 }
