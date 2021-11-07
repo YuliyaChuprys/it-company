@@ -57,8 +57,8 @@ public class ITCompany {
                 LocalDate.parse("2022-10-01"));
         Project project = new Project("NewProject", requirement, customer);
 
-        Runnable lambda = () -> System.out.println("Lambda use");
-        lambda.run();
+        Runnable lambda = () -> System.out.println("Work with file is done.");
+       // lambda.run();
 
         /**
          * Create HashMap for Employees with key-value: id Employee, in Vocation - true, in Work - false
@@ -157,13 +157,15 @@ public class ITCompany {
         /**
          * Create Streaming
          */
-        employees.stream()
+
+        List<String> sortedNames = employees.stream()
                 .map(Employee::getFirstName)
                 .filter(firstName -> firstName.startsWith("F"))
                 .peek(e -> System.out.println("Filtered value: " + e))
                 .map(String::toUpperCase)
                 .peek(e -> System.out.println("Mapped value: " + e))
                 .collect(Collectors.toList());
+
 
         Arrays.asList(qas, employees).stream()
                 .flatMap(list -> list.stream())
@@ -225,7 +227,7 @@ public class ITCompany {
         List<String> doc = fileService.readFile("C:\\Users\\Professional\\IdeaProjects\\it-company\\file.txt");
         HashMap<String, Integer> fileMap = fileService.countWord(doc);
         StringBuilder result = fileService.sortBy(fileMap);
-        fileService.writeToFile(result, "src\\main\\resources\\SortedText.txt");
+        fileService.writeToFile(result, "src\\main\\resources\\SortedText.txt", lambda);
 
         /**
          * Reflection with Requirement Class

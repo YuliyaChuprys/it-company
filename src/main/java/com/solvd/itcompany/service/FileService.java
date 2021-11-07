@@ -41,12 +41,18 @@ public class FileService {
         Map<Integer, String> sortedMap = new TreeMap<>(Collections.reverseOrder());
         fileMap.forEach((k, v) -> sortedMap.put(v, k));
         StringBuilder result = new StringBuilder();
-        sortedMap.forEach((k, v) -> System.out.print(k + "=" + v + ", "));
+        for (Map.Entry<Integer, String> entry : sortedMap.entrySet()) {
+            result.append(entry.getKey());
+            result.append("=");
+            result.append(entry.getValue());
+            result.append(", ");
+        }
         return result;
     }
 
-    public void writeToFile(StringBuilder result, String source) throws IOException {
+    public void writeToFile(StringBuilder result, String source, Runnable runnable) throws IOException {
 
+        runnable.run();
         System.out.println(result);
         FileUtils.writeStringToFile(new File("src\\main\\resources\\SortedText.txt"), result.toString());
 
