@@ -1,6 +1,8 @@
 package com.solvd.itcompany.domain;
 
-import org.apache.logging.log4j.core.util.JsonUtils;
+import com.solvd.itcompany.domain.Cleaning;
+import com.solvd.itcompany.domain.DayWeek;
+import com.solvd.itcompany.domain.Worker;
 
 public class OfficeManager<C extends Cleaning<?, ?>, O extends OfficeManager<?, ?>> extends Worker<C, O> {
 
@@ -10,10 +12,6 @@ public class OfficeManager<C extends Cleaning<?, ?>, O extends OfficeManager<?, 
         super(id, firstName, work, uniform);
     }
 
-<<<<<<< HEAD
-    public void generalClean(){
-        System.out.println("General cleaning in the office");
-=======
     public DayWeek getDayWeek() {
         return dayWeek;
     }
@@ -29,7 +27,6 @@ public class OfficeManager<C extends Cleaning<?, ?>, O extends OfficeManager<?, 
         else {
             System.out.println("Keep calm, Work hard!");
         }
->>>>>>> lambda-streaming
     }
 
     @Override
