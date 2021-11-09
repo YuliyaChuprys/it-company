@@ -1,11 +1,11 @@
 package com.solvd.itcompany.threads;
 
-public class Connection extends Thread {
+public class Connection {
+    private int index;
 
-    private String field;
 
-    public Connection(String name) {
-        super(name);
+    public Connection(int index) {
+        this.index = index;
     }
 
     public void connect() {
@@ -14,7 +14,7 @@ public class Connection extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Connection established.");
+        System.out.println("Connection established. Tread = " + Thread.currentThread().getName() + ". Connection index= " + index);
     }
 
     public void reed() {
@@ -23,7 +23,7 @@ public class Connection extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Reading data.");
+        System.out.println("Reading data."  + Thread.currentThread().getName() + ". Connection index= " + index);
     }
 
     public void update() {
@@ -32,8 +32,7 @@ public class Connection extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        String field = this.field;
-        System.out.println("Data was updated.");
+        System.out.println("Data was updated."  + Thread.currentThread().getName() + ". Connection index= " + index);
     }
 
     public void delete() {
@@ -42,17 +41,7 @@ public class Connection extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Data was deleted.");
-    }
-
-    public String getField() {
-        return field;
-    }
-
-    @Override
-    public void run() {
-        System.out.println("Started " + getName());
-
+        System.out.println("Data was deleted."  + Thread.currentThread().getName() + ". Connection index= " + index);
     }
 
 }

@@ -7,18 +7,15 @@ import java.util.stream.IntStream;
 public class ConnectionPool {
 
     private final LinkedList<Connection> connections;
-    private final int size;
+    private static volatile ConnectionPool instance;
+
 
     private ConnectionPool(int sizeOfPool) {
-        this.size = sizeOfPool;
         this.connections = new LinkedList<>();
-        IntStream.range(0, this.size).boxed()
-                .forEach(index -> {
-                    this.connections.offer(new Connection(getConnection().getName()));
-                });
+        for(int i =0; i<sizeOfPool; i++){
+            this.connections.add(new Connection(i));
+        }
     }
-
-    private static ConnectionPool instance = null;
 
     public static ConnectionPool getInstance(int sizeOfPool) {
         if (instance == null) {

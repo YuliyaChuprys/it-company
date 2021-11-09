@@ -2,6 +2,7 @@ package com.solvd.itcompany.threads;
 
 public class ConnectionRun implements Runnable{
 
+
     private final String name;
 
     public ConnectionRun(String name){

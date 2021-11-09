@@ -28,6 +28,7 @@ import com.solvd.itcompany.service.IEmployeeService;
 import com.solvd.itcompany.service.IProjectEstimationService;
 import com.solvd.itcompany.service.ProjectEstimationService;
 import com.solvd.itcompany.threads.Connection;
+import com.solvd.itcompany.threads.ConnectionPool;
 import com.solvd.itcompany.threads.ConnectionRun;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -252,18 +253,11 @@ public class ITCompany {
             secondRequirement = (Requirement) reqClass.getConstructor(params).newInstance(02, "Second project", 15,
                     LocalDate.parse("2023-01-01"));
             Method getFeatures = secondRequirement.getClass().getDeclaredMethod("getFeatures");
-            Method getStartProject = secondRequirement.getClass().getDeclaredMethod("getStartProjectDate1"); //mistake in name
+            // Method getStartProject = secondRequirement.getClass().getDeclaredMethod("getStartProjectDate1"); //mistake in name
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
             e.printStackTrace();
         }
         System.out.println(secondRequirement);
-
-        IntStream.range(0, 5)
-                .boxed()
-                .forEach(integer -> {
-                    Connection connection = new Connection("Connection" + integer);
-                    connection.start();
-                });
 
         IntStream.range(0, 5)
                 .boxed()
@@ -274,23 +268,23 @@ public class ITCompany {
                 });
 
         ExecutorService executorService = Executors.newFixedThreadPool(10);
-        IntStream.range(0, 10)
-                .boxed()
-                .forEach(integer -> {
-                    executorService.submit(() -> {
-                        System.out.println("In thread " + integer);
-                        try {
-                            Thread.sleep(5);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                });
+//        IntStream.range(0, 10)
+//                .boxed()
+//                .forEach(integer -> {
+//                    executorService.submit(() -> {
+//                        System.out.println("In thread " + integer);
+//                        try {
+//                            Thread.sleep(5);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                    });
+//                });
 
         CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
             System.out.println("Use CompletableFuture");
-           return "End CompletableFuture";
-                   });
+            return "End CompletableFuture";
+        });
         System.out.println("After CompletableFuture use");
         String result1 = get(future);
         System.out.println(result1 + "after waiting");
@@ -303,13 +297,23 @@ public class ITCompany {
                         // Connection connection = ConnectionPool.getInstance(5);
                     });
                 });
+
+        ConnectionPool connectionPool = ConnectionPool.getInstance(5);
+        for (int i = 0; i < 100; i++) {
+            Thread thread = new Thread(() -> {
+                Connection connection = connectionPool.getConnection();
+                connection.connect();
+                connectionPool.releaseConnection(connection);
+            });
+            thread.start();
+        }
     }
 
-    private static String get(CompletableFuture<String> future){
+    private static String get(CompletableFuture<String> future) {
         String result1 = null;
         try {
             result1 = future.get(1, TimeUnit.SECONDS);
-        } catch (InterruptedException | ExecutionException| TimeoutException e) {
+        } catch (InterruptedException | ExecutionException | TimeoutException e) {
             e.printStackTrace();
         }
         return result1;
