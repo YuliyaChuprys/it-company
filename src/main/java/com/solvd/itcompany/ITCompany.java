@@ -27,6 +27,8 @@ import com.solvd.itcompany.service.IEducationService;
 import com.solvd.itcompany.service.IEmployeeService;
 import com.solvd.itcompany.service.IProjectEstimationService;
 import com.solvd.itcompany.service.ProjectEstimationService;
+import com.solvd.itcompany.threads.Connection;
+import com.solvd.itcompany.threads.ConnectionRun;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -43,7 +45,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ITCompany {
 
@@ -248,6 +257,62 @@ public class ITCompany {
             e.printStackTrace();
         }
         System.out.println(secondRequirement);
+
+        IntStream.range(0, 5)
+                .boxed()
+                .forEach(integer -> {
+                    Connection connection = new Connection("Connection" + integer);
+                    connection.start();
+                });
+
+        IntStream.range(0, 5)
+                .boxed()
+                .forEach(integer -> {
+                    ConnectionRun connectionRun = new ConnectionRun("ConnectionRun" + integer);
+                    Thread thread = new Thread(connectionRun);
+                    thread.start();
+                });
+
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        IntStream.range(0, 10)
+                .boxed()
+                .forEach(integer -> {
+                    executorService.submit(() -> {
+                        System.out.println("In thread " + integer);
+                        try {
+                            Thread.sleep(5);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                });
+
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+            System.out.println("Use CompletableFuture");
+           return "End CompletableFuture";
+                   });
+        System.out.println("After CompletableFuture use");
+        String result1 = get(future);
+        System.out.println(result1 + "after waiting");
+
+        IntStream.range(0, 10)
+                .boxed()
+                .forEach(integer -> {
+                    Thread thread = new Thread(() -> {
+                        System.out.println(integer + " Thread started");
+                        // Connection connection = ConnectionPool.getInstance(5);
+                    });
+                });
+    }
+
+    private static String get(CompletableFuture<String> future){
+        String result1 = null;
+        try {
+            result1 = future.get(1, TimeUnit.SECONDS);
+        } catch (InterruptedException | ExecutionException| TimeoutException e) {
+            e.printStackTrace();
+        }
+        return result1;
     }
 
     public static Team initializeData() {

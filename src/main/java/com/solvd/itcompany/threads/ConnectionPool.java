@@ -1,18 +1,17 @@
 package com.solvd.itcompany.threads;
 
 
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.LinkedList;
 import java.util.stream.IntStream;
 
 public class ConnectionPool {
 
-    private final Queue<Connection> connections;
+    private final LinkedList<Connection> connections;
     private final int size;
 
     private ConnectionPool(int sizeOfPool) {
         this.size = sizeOfPool;
-        this.connections = new ConcurrentLinkedQueue<>();
+        this.connections = new LinkedList<>();
         IntStream.range(0, this.size).boxed()
                 .forEach(index -> {
                     this.connections.offer(new Connection(getConnection().getName()));
@@ -22,11 +21,13 @@ public class ConnectionPool {
     private static ConnectionPool instance = null;
 
     public static ConnectionPool getInstance(int sizeOfPool) {
+        if (instance == null) {
             synchronized (ConnectionPool.class) {
                 if (instance == null) {
                     instance = new ConnectionPool(sizeOfPool);
                 }
             }
+        }
         return instance;
     }
 

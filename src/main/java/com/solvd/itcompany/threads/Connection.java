@@ -2,7 +2,6 @@ package com.solvd.itcompany.threads;
 
 public class Connection extends Thread {
 
-    private static volatile Integer count = 2;
     private String field;
 
     public Connection(String name) {
@@ -44,10 +43,6 @@ public class Connection extends Thread {
             e.printStackTrace();
         }
         System.out.println("Data was deleted.");
-    }
-
-    public static Integer getCount() {
-        return count;
     }
 
     public String getField() {
