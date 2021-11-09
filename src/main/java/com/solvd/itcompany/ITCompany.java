@@ -1,27 +1,27 @@
 package com.solvd.itcompany;
 
+import com.solvd.itcompany.domain.LeadDevelop;
+import com.solvd.itcompany.domain.IDocumentAction;
+import com.solvd.itcompany.domain.Customer;
+import com.solvd.itcompany.domain.LeadQa;
+import com.solvd.itcompany.domain.OfficeManager;
+import com.solvd.itcompany.exeption.InvalidDocumentData;
+import com.solvd.itcompany.exeption.InvalidWorkExperienceMonth;
+import com.solvd.itcompany.domain.Resource;
+import com.solvd.itcompany.service.EducationService;
+import com.solvd.itcompany.service.EmployeeService;
 import com.solvd.itcompany.domain.ArrivalDepartureJournal;
 import com.solvd.itcompany.domain.Cleaning;
-import com.solvd.itcompany.domain.Customer;
 import com.solvd.itcompany.domain.DayWeek;
 import com.solvd.itcompany.domain.Developer;
 import com.solvd.itcompany.domain.Document;
 import com.solvd.itcompany.domain.Employee;
-import com.solvd.itcompany.domain.IDocumentAction;
-import com.solvd.itcompany.domain.LeadDevelop;
-import com.solvd.itcompany.domain.LeadQa;
-import com.solvd.itcompany.domain.OfficeManager;
 import com.solvd.itcompany.domain.Project;
 import com.solvd.itcompany.domain.ProjectManager;
 import com.solvd.itcompany.domain.ProjectOffer;
 import com.solvd.itcompany.domain.QA;
 import com.solvd.itcompany.domain.Requirement;
-import com.solvd.itcompany.domain.Resource;
 import com.solvd.itcompany.domain.Team;
-import com.solvd.itcompany.exeption.InvalidDocumentData;
-import com.solvd.itcompany.exeption.InvalidWorkExperienceMonth;
-import com.solvd.itcompany.service.EducationService;
-import com.solvd.itcompany.service.EmployeeService;
 import com.solvd.itcompany.service.FileService;
 import com.solvd.itcompany.service.IEducationService;
 import com.solvd.itcompany.service.IEmployeeService;
@@ -58,7 +58,7 @@ public class ITCompany {
         Project project = new Project("NewProject", requirement, customer);
 
         Runnable lambda = () -> System.out.println("Work with file is done.");
-       // lambda.run();
+        // lambda.run();
 
         /**
          * Create HashMap for Employees with key-value: id Employee, in Vocation - true, in Work - false
@@ -210,6 +210,8 @@ public class ITCompany {
         System.out.println(firstEmployee + ", " + secondEmployee);
         System.out.println("Employee First and Employee Second has the same name? " + firstEmployee.equals(secondEmployee));//equals
 
+        OfficeManager<?, ?> firstOM = new OfficeManager<>("om01", "Mary", true, true);
+
         ArrivalDepartureJournal.getArrivalDepartureJournal().addJournalInfo("First Employee arrived");
         ArrivalDepartureJournal.getArrivalDepartureJournal().addJournalInfo("Second Employee arrived");
         ArrivalDepartureJournal.getArrivalDepartureJournal().addJournalInfo("Third Employee arrived");
@@ -246,7 +248,6 @@ public class ITCompany {
             e.printStackTrace();
         }
         System.out.println(secondRequirement);
-
     }
 
     public static Team initializeData() {
@@ -278,6 +279,4 @@ public class ITCompany {
     public enum StageProject {
         PLANNING, DEVELOPING, TESTING, CLOSE
     }
-
-
 }
